@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "header.h": "c",
+        "stdlib.h": "c",
+        "defines.h": "c",
+        "struct.h": "c",
+        "functions.h": "c",
+        "ft_printf.h": "c"
+    }
+}
