@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:47:25 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/01/16 21:42:07 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/01/17 23:02:47 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,28 @@ void	draw_vertical_line(t_data *data)
 	int	y;
 	int	i;
 	int	*pixels;
+	int	*pixels_2;
+	t_img	*sprite;
+	t_dda	*dda;
 
+	dda = &data->dda;
 	y = data->draw_start;
 	i = 0;
 	pixels = (int *)mlx_get_data_addr(data->img, &data->bpp, &data->size_line,
 			&data->endian);
+	if (dda->side == 0)
+		sprite = &data->image_wall_x;
+	else
+		sprite = &data->image_wall_y;
+
+	pixels_2 = (int *)mlx_get_data_addr(sprite->img, &sprite->bpp, &sprite->size_line, &sprite->endian);
+
+	sprite->sprite_x = (int)(data->dda.wall_hit_coord * (double)(sprite->width));
+	if (data->dda.side == 0 && data->dda.ray_dir_x < 0)
+		sprite->sprite_x = sprite->width - sprite->sprite_x - 1;
+	else if (data->dda.side == 1 && data->dda.ray_dir_y < 0)
+		sprite->sprite_x = sprite->width - sprite->sprite_x - 1;
+		
 	while (data->draw_start < 2000 && i <= data->draw_end)
 	{
 		pixels[i * SCREENWIDTH + data->dda.x] = 0x1133ff;
@@ -31,11 +48,9 @@ void	draw_vertical_line(t_data *data)
 	}
 	while (y <= data->draw_end)
 	{
-		if ((y - data->draw_start) % ((data->draw_end - data->draw_start)
-				/ 3) == 0)
-			pixels[y * SCREENWIDTH + data->dda.x] = 0x000000;
-		else
-			pixels[y * SCREENWIDTH + data->dda.x] = data->dda.color;
+		int	new_y;
+		new_y = (int)((y - data->draw_start) * ((double)sprite->height / (data->draw_end - data->draw_start)));
+		pixels[y * SCREENWIDTH + data->dda.x] = pixels_2[(int)(new_y * sprite->width + sprite->sprite_x)];
 		y++;
 	}
 	i = data->draw_end + 1;
@@ -126,9 +141,12 @@ void	perform_raycasting(t_data *data)
 		dda->old_map_x = dda->map_x;
 		dda->old_map_y = dda->map_y;
 		if (dda->side == 0)
-			dda->wall_hit_coord = floor(data->pos_x + dda->dist_ortho_wall * -dda->ray_dir_y);
-    	else
-			dda->wall_hit_coord = floor(data->pos_x + dda->dist_ortho_wall * -dda->ray_dir_x);
+			dda->wall_hit_coord = data->pos_y + dda->dist_ortho_wall * dda->ray_dir_y;
+		else
+			dda->wall_hit_coord = data->pos_x + dda->dist_ortho_wall * dda->ray_dir_x;
+		dda->wall_hit_coord -= floor(dda->wall_hit_coord);
+		if (dda->dist_ortho_wall < 1e-6)
+    		dda->dist_ortho_wall = 1e-6;
 
 		draw_vertical_line(data);
 		dda->x++;

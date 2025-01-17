@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:47:15 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/01/16 21:42:08 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/01/17 22:58:07 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,19 @@ typedef struct s_dda
 	double	wall_hit_coord;
 }			t_dda;
 
+typedef struct s_img
+{
+	int		is_empty;
+	void	*img;
+	char	*img_path;
+	int		width;
+	int		height;
+	int		bpp;
+	int		size_line;
+	int		endian;
+	int		sprite_x;
+}			t_img;
+
 typedef struct s_data
 {
 	void	*mlx;
@@ -61,8 +74,9 @@ typedef struct s_data
 	int		draw_start;
 	int		draw_end;
 	t_dda	dda;
+	t_img	image_wall_x;
+	t_img	image_wall_y;
 }			t_data;
-
 
 
 #endif // !STRUCT_H

@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:45:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/01/16 20:57:55 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/01/17 21:04:16 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,7 @@
 # define MOVE_SPEED 0.1
 # define ROTATION_SPEED 0.03
 # define MOUSE_STEP 6
+# define IMG_WIDTH 128
+# define IMG_HEIGHT 128
 
 #endif // ! DEFINES_H
