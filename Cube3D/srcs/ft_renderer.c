@@ -13,7 +13,7 @@
 #include "../includes/defines.h"
 #include "../includes/functions.h"
 #include "../includes/struct.h"
-
+#include <stdio.h>
 void	draw_vertical_line(t_data *data)
 {
 	int	y;
@@ -51,9 +51,10 @@ void	perform_raycasting(t_data *data)
 	t_dda	*dda;
 
 	dda = &data->dda;
-	mlx_mouse_move(data->mlx, data->win, SCREENWIDTH / 2, SCREENHEIGHT / 2);
-	mlx_mouse_get_pos(data->mlx, data->win, &dda->p_x, &dda->p_y);
+	move_mouse_to_center(data);
 	dda->x = 0;
+	dda->old_map_x = (int)data->pos_x;
+	dda->old_map_y = (int)data->pos_y;
 	while (dda->x < SCREENWIDTH)
 	{
 		dda->camera_x = 2 * dda->x / (double)SCREENWIDTH - 1;
@@ -63,7 +64,6 @@ void	perform_raycasting(t_data *data)
 		dda->map_y = (int)data->pos_y;
 		dda->delta_dist_x = fabs(1 / dda->ray_dir_x);
 		dda->delta_dist_y = fabs(1 / dda->ray_dir_y);
-		dda->dist_ortho_wall;
 		dda->hit = 0;
 		if (dda->ray_dir_x < 0)
 		{
@@ -121,6 +121,15 @@ void	perform_raycasting(t_data *data)
 			dda->color = 0x885555;
 		else
 			dda->color = 0x442211;
+		if (dda->map_x != dda->old_map_x || dda->map_y != dda->old_map_y)
+			dda->color = 0x000000;
+		dda->old_map_x = dda->map_x;
+		dda->old_map_y = dda->map_y;
+		if (dda->side == 0)
+			dda->wall_hit_coord = floor(data->pos_x + dda->dist_ortho_wall * -dda->ray_dir_y);
+    	else
+			dda->wall_hit_coord = floor(data->pos_x + dda->dist_ortho_wall * -dda->ray_dir_x);
+
 		draw_vertical_line(data);
 		dda->x++;
 	}

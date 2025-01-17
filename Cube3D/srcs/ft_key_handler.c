@@ -16,23 +16,18 @@
 
 int	handle_keypress(int keycode, t_data *data)
 {
-	double	move_speed;
-	double	rotation_speed;
-
-	move_speed = 0.2;
-	rotation_speed = 0.05;
 	if (keycode == KEY_W)
-		move_forward(data, move_speed);
+		move_forward(data);
 	else if (keycode == KEY_S)
-		move_backward(data, move_speed);
+		move_backward(data);
 	else if (keycode == KEY_A)
-		move_left(data, move_speed);
+		move_left(data);
 	else if (keycode == KEY_D)
-		move_right(data, move_speed);
+		move_right(data);
 	else if (keycode == KEY_LEFT)
-		rotate_left(data, rotation_speed);
+		rotate_left(data);
 	else if (keycode == KEY_RIGHT)
-		rotate_right(data, rotation_speed);
+		rotate_right(data);
 	else if (keycode == KEY_ESC)
 		clean_up(data);
 	return (0);

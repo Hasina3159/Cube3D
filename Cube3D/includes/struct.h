@@ -16,16 +16,20 @@
 typedef struct s_dda
 {
 	int		x;
-	int		p_x;
-	int		p_y;
+	int		mouse_x;
+	int		mouse_y;
 	int		map_x;
 	int		map_y;
+	int		old_map_x;
+	int		old_map_y;
 	int 	step_x;
 	int		step_y;
 	int		hit;
 	int		side;
 	int		line_height;
 	int		color;
+	int		texture_x;
+	int		texture_y;
 	double	camera_x;
 	double	ray_dir_x;
 	double	ray_dir_y;
@@ -34,7 +38,8 @@ typedef struct s_dda
 	double	delta_dist_x;
 	double	delta_dist_y;
 	double	dist_ortho_wall;
-}				t_dda;
+	double	wall_hit_coord;
+}			t_dda;
 
 typedef struct s_data
 {

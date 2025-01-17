@@ -29,5 +29,8 @@
 # define SCREENHEIGHT 1080
 # define MAPWIDTH 23
 # define MAPHEIGHT 24
+# define MOVE_SPEED 0.1
+# define ROTATION_SPEED 0.03
+# define MOUSE_STEP 6
 
 #endif // ! DEFINES_H
