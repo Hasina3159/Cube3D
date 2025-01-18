@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:45:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/01/17 21:04:16 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/01/18 13:53:48 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@
 # define SCREENHEIGHT 1080
 # define MAPWIDTH 23
 # define MAPHEIGHT 24
-# define MOVE_SPEED 0.1
-# define ROTATION_SPEED 0.03
+# define MOVE_SPEED 0.00003
+# define MOVE_SPEED_FACTOR 50000
+# define ROTATION_SPEED 0.000005
 # define MOUSE_STEP 6
 # define IMG_WIDTH 128
 # define IMG_HEIGHT 128

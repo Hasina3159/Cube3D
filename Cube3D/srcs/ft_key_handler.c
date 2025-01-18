@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_key_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:44:29 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/01/16 21:49:57 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/01/18 16:00:31 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@
 int	handle_keypress(int keycode, t_data *data)
 {
 	if (keycode == KEY_W)
-		move_forward(data);
+		data->key_data.key_w = 1;
 	else if (keycode == KEY_S)
-		move_backward(data);
+		data->key_data.key_s = 1;
 	else if (keycode == KEY_A)
-		move_left(data);
+		data->key_data.key_a = 1;
 	else if (keycode == KEY_D)
-		move_right(data);
+		data->key_data.key_d = 1;
 	else if (keycode == KEY_LEFT)
-		rotate_left(data);
+		data->key_data.key_left = 1;
 	else if (keycode == KEY_RIGHT)
-		rotate_right(data);
+		data->key_data.key_right = 1;
 	else if (keycode == KEY_ESC)
 		clean_up(data);
 	return (0);
@@ -35,6 +35,58 @@ int	handle_keypress(int keycode, t_data *data)
 
 int	handle_keyrelease(int keycode, t_data *data)
 {
+	if (keycode == KEY_W)
+		data->key_data.key_w = 0;
+	else if (keycode == KEY_S)
+		data->key_data.key_s = 0;
+	else if (keycode == KEY_A)
+		data->key_data.key_a = 0;
+	else if (keycode == KEY_D)
+		data->key_data.key_d = 0;
+	else if (keycode == KEY_LEFT)
+		data->key_data.key_left = 0;
+	else if (keycode == KEY_RIGHT)
+		data->key_data.key_right = 0;
+	else if (keycode == KEY_ESC)
+		clean_up(data);
 	data->render = 0;
 	return (0);
+}
+
+void init_key (t_key *key_data)
+{
+	if (key_data == NULL)
+		return;
+	key_data->key_w = 0;
+	key_data->key_a = 0;
+	key_data->key_s = 0;
+	key_data->key_d = 0;
+	key_data->key_left = 0;
+	key_data->key_right = 0;
+	key_data->mouse_left = 0;
+	key_data->mouse_right = 0;
+	return;
+}
+
+void key_render (t_data *data)
+{
+	t_key	*key_data;
+
+	if (data == NULL)
+		return;
+	key_data = &data->key_data;	
+	if (key_data->key_w == 1)
+		move_forward(data);
+	if (key_data->key_a == 1)
+		move_left(data);
+	if (key_data->key_s == 1)
+		move_backward(data);
+	if (key_data->key_d == 1)
+		move_right(data);
+	if (key_data->key_left == 1 || key_data->mouse_left == 1)
+		rotate_left(data);
+	if (key_data->key_right == 1 || key_data->mouse_right == 1)
+		rotate_right(data);
+		
+	return;
 }

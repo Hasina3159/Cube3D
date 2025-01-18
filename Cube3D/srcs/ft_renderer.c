@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_renderer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:47:25 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/01/17 23:02:47 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/01/18 16:07:50 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,25 @@ void	draw_vertical_line(t_data *data)
 	int	y;
 	int	i;
 	int	*pixels;
-	int	*pixels_2;
 	t_img	*sprite;
 	t_dda	*dda;
 
 	dda = &data->dda;
 	y = data->draw_start;
 	i = 0;
+
+	key_render (data);
 	pixels = (int *)mlx_get_data_addr(data->img, &data->bpp, &data->size_line,
 			&data->endian);
 	if (dda->side == 0)
-		sprite = &data->image_wall_x;
-	else
-		sprite = &data->image_wall_y;
-
-	pixels_2 = (int *)mlx_get_data_addr(sprite->img, &sprite->bpp, &sprite->size_line, &sprite->endian);
-
+		sprite = &data->image_wall_n;
+	else if (dda->side == 2)
+		sprite = &data->image_wall_s;
+	else if (dda->side == 1)
+		sprite = &data->image_wall_e;
+	else if (dda->side == 3)
+		sprite = &data->image_wall_w;
 	sprite->sprite_x = (int)(data->dda.wall_hit_coord * (double)(sprite->width));
-	if (data->dda.side == 0 && data->dda.ray_dir_x < 0)
-		sprite->sprite_x = sprite->width - sprite->sprite_x - 1;
-	else if (data->dda.side == 1 && data->dda.ray_dir_y < 0)
-		sprite->sprite_x = sprite->width - sprite->sprite_x - 1;
-		
 	while (data->draw_start < 2000 && i <= data->draw_end)
 	{
 		pixels[i * SCREENWIDTH + data->dda.x] = 0x1133ff;
@@ -50,7 +47,7 @@ void	draw_vertical_line(t_data *data)
 	{
 		int	new_y;
 		new_y = (int)((y - data->draw_start) * ((double)sprite->height / (data->draw_end - data->draw_start)));
-		pixels[y * SCREENWIDTH + data->dda.x] = pixels_2[(int)(new_y * sprite->width + sprite->sprite_x)];
+		pixels[y * SCREENWIDTH + data->dda.x] = sprite->pixels[(int)(new_y * sprite->width + sprite->sprite_x)];
 		y++;
 	}
 	i = data->draw_end + 1;
@@ -108,18 +105,23 @@ void	perform_raycasting(t_data *data)
 			{
 				dda->side_dist_x += dda->delta_dist_x;
 				dda->map_x += dda->step_x;
-				dda->side = 0;
+				if (dda->step_x < 0)
+					dda->side = 0;
+				else
+					dda->side = 2;
 			}
 			else
 			{
 				dda->side_dist_y += dda->delta_dist_y;
 				dda->map_y += dda->step_y;
-				dda->side = 1;
-			}
+				if (dda->step_y < 0)
+					dda->side = 1;
+				else
+					dda->side = 3;			}
 			if (data->world_map[dda->map_x][dda->map_y] > 0)
 				dda->hit = 1;
 		}
-		if (dda->side == 0)
+		if (dda->side % 2 == 0)
 			dda->dist_ortho_wall = (dda->map_x - data->pos_x + (1 - dda->step_x)
 					/ 2) / dda->ray_dir_x;
 		else
@@ -132,15 +134,16 @@ void	perform_raycasting(t_data *data)
 		data->draw_end = dda->line_height / 2 + SCREENHEIGHT / 2;
 		if (data->draw_end >= SCREENHEIGHT)
 			data->draw_end = SCREENHEIGHT - 1;
-		if (dda->side == 0)
+		/*if (dda->side == 0)
 			dda->color = 0x885555;
 		else
 			dda->color = 0x442211;
 		if (dda->map_x != dda->old_map_x || dda->map_y != dda->old_map_y)
 			dda->color = 0x000000;
+		*/
 		dda->old_map_x = dda->map_x;
 		dda->old_map_y = dda->map_y;
-		if (dda->side == 0)
+		if (dda->side % 2 == 0)
 			dda->wall_hit_coord = data->pos_y + dda->dist_ortho_wall * dda->ray_dir_y;
 		else
 			dda->wall_hit_coord = data->pos_x + dda->dist_ortho_wall * dda->ray_dir_x;

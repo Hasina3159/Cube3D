@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:47:15 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/01/17 22:58:07 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/01/18 15:52:24 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,20 @@ typedef struct s_img
 	int		size_line;
 	int		endian;
 	int		sprite_x;
+	int		*pixels;
 }			t_img;
+
+typedef struct s_key
+{
+	int	key_w;
+	int	key_a;
+	int	key_s;
+	int	key_d;
+	int	key_left;
+	int	key_right;
+	int	mouse_left;
+	int	mouse_right;
+}		t_key;
 
 typedef struct s_data
 {
@@ -74,8 +87,11 @@ typedef struct s_data
 	int		draw_start;
 	int		draw_end;
 	t_dda	dda;
-	t_img	image_wall_x;
-	t_img	image_wall_y;
+	t_img	image_wall_n;
+	t_img	image_wall_s;
+	t_img	image_wall_e;
+	t_img	image_wall_w;
+	t_key	key_data;
 }			t_data;
 
 

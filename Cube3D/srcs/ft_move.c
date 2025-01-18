@@ -18,10 +18,10 @@ void	move_forward(t_data *data)
 {
 	data->render = 1;
 	if (data->world_map[(int)(data->pos_x + data->dir_x
-			* MOVE_SPEED)][(int)(data->pos_y)] == 0)
+			* MOVE_SPEED * MOVE_SPEED_FACTOR)][(int)(data->pos_y)] == 0)
 		data->pos_x += data->dir_x * MOVE_SPEED;
 	if (data->world_map[(int)(data->pos_x)][(int)(data->pos_y + data->dir_y
-			* MOVE_SPEED)] == 0)
+			* MOVE_SPEED * MOVE_SPEED_FACTOR)] == 0)
 		data->pos_y += data->dir_y * MOVE_SPEED;
 }
 
@@ -29,10 +29,10 @@ void	move_backward(t_data *data)
 {
 	data->render = 1;
 	if (data->world_map[(int)(data->pos_x - data->dir_x
-			* MOVE_SPEED)][(int)(data->pos_y)] == 0)
+			* MOVE_SPEED * MOVE_SPEED_FACTOR)][(int)(data->pos_y)] == 0)
 		data->pos_x -= data->dir_x * MOVE_SPEED;
 	if (data->world_map[(int)(data->pos_x)][(int)(data->pos_y - data->dir_y
-			* MOVE_SPEED)] == 0)
+			* MOVE_SPEED * MOVE_SPEED_FACTOR)] == 0)
 		data->pos_y -= data->dir_y * MOVE_SPEED;
 }
 
@@ -45,10 +45,10 @@ void	move_left(t_data *data)
 	permouse_y_dir = data->dir_x;
 	data->render = 1;
 	if (data->world_map[(int)(data->pos_x + permouse_x_dir
-			* MOVE_SPEED)][(int)(data->pos_y)] == 0)
+			* MOVE_SPEED * MOVE_SPEED_FACTOR)][(int)(data->pos_y)] == 0)
 		data->pos_x += permouse_x_dir * MOVE_SPEED;
 	if (data->world_map[(int)(data->pos_x)][(int)(data->pos_y + permouse_y_dir
-			* MOVE_SPEED)] == 0)
+			* MOVE_SPEED * MOVE_SPEED_FACTOR)] == 0)
 		data->pos_y += permouse_y_dir * MOVE_SPEED;
 }
 

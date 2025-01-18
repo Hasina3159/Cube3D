@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:50:41 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/01/16 21:51:25 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/01/18 13:34:31 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,8 @@ int		handle_keyrelease(int keycode, t_data *data);
 void	draw_vertical_line(t_data *data);
 void	perform_raycasting(t_data *data);
 void    move_mouse_to_center(t_data *data);
+void    init_key (t_key *key_data);
+void    key_render (t_data *data);
+int     ft_load_xpm_image(t_data *data, t_img *image, char *path);
 
 #endif // !FUNCTIONS_H

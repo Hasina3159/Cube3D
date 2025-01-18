@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rotation.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:41:18 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/01/16 21:48:33 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/01/18 16:46:34 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,31 +18,39 @@ void	rotate_left(t_data *data)
 {
 	double	old_x_dir;
 	double	old_x_plane;
+	double	rotation;
 
+	rotation = ROTATION_SPEED;
+	if (data->key_data.mouse_left == 1)
+		rotation *= 2;
 	old_x_dir = data->dir_x;
 	old_x_plane = data->plane_x;
 	data->render = 1;
-	data->dir_x = data->dir_x * cos(ROTATION_SPEED) - data->dir_y * sin(ROTATION_SPEED);
-	data->dir_y = old_x_dir * sin(ROTATION_SPEED) + data->dir_y * cos(ROTATION_SPEED);
-	data->plane_x = data->plane_x * cos(ROTATION_SPEED) - data->plane_y
-		* sin(ROTATION_SPEED);
-	data->plane_y = old_x_plane * sin(ROTATION_SPEED) + data->plane_y * cos(ROTATION_SPEED);
+	data->dir_x = data->dir_x * cos(rotation) - data->dir_y * sin(rotation);
+	data->dir_y = old_x_dir * sin(rotation) + data->dir_y * cos(rotation);
+	data->plane_x = data->plane_x * cos(rotation) - data->plane_y
+		* sin(rotation);
+	data->plane_y = old_x_plane * sin(rotation) + data->plane_y * cos(rotation);
 }
 
 void	rotate_right(t_data *data)
 {
 	double	old_x_dir;
 	double	old_x_plane;
+	double	rotation;
 
+	rotation = ROTATION_SPEED;
+	if (data->key_data.mouse_right == 1)
+		rotation *= 2;
 	old_x_dir = data->dir_x;
 	old_x_plane = data->plane_x;
 	data->render = 1;
-	data->dir_x = data->dir_x * cos(-ROTATION_SPEED) - data->dir_y * sin(-ROTATION_SPEED);
-	data->dir_y = old_x_dir * sin(-ROTATION_SPEED) + data->dir_y * cos(-ROTATION_SPEED);
-	data->plane_x = data->plane_x * cos(-ROTATION_SPEED) - data->plane_y
-		* sin(-ROTATION_SPEED);
-	data->plane_y = old_x_plane * sin(-ROTATION_SPEED) + data->plane_y
-		* cos(-ROTATION_SPEED);
+	data->dir_x = data->dir_x * cos(-rotation) - data->dir_y * sin(-rotation);
+	data->dir_y = old_x_dir * sin(-rotation) + data->dir_y * cos(-rotation);
+	data->plane_x = data->plane_x * cos(-rotation) - data->plane_y
+		* sin(-rotation);
+	data->plane_y = old_x_plane * sin(-rotation) + data->plane_y
+		* cos(-rotation);
 }
 
 void move_mouse_to_center(t_data *data)
@@ -54,9 +62,14 @@ void move_mouse_to_center(t_data *data)
 	dda = &data->dda;
 	mlx_mouse_get_pos(data->mlx, data->win, &dda->mouse_x, &dda->mouse_y);
 	if (dda->mouse_x < (SCREENWIDTH / 2))
-		rotate_left(data);
+		data->key_data.mouse_left = 1;
 	else if (dda->mouse_x > (SCREENWIDTH / 2))
-		rotate_right(data);
+		data->key_data.mouse_right = 1;
+	else
+	{
+		data->key_data.mouse_left = 0;
+		data->key_data.mouse_right = 0;
+	}
 	if (dda->mouse_x + 10 < (SCREENWIDTH / 2) )
 		mlx_mouse_move(data->mlx, data->win, ((SCREENWIDTH / 2) - 10), dda->mouse_y);
 	if (dda->mouse_x - 10 > (SCREENWIDTH / 2) )
