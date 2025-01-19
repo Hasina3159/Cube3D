@@ -15,3 +15,8 @@ int ft_load_xpm_image(t_data *data, t_img *image, char *path)
     image->pixels = (int *)mlx_get_data_addr(image->img, &image->bpp, &image->size_line, &image->endian);
     return (1);
 }
+
+int ft_create_screen_image(t_img *image)
+{
+	image->pixels = (int *)mlx_get_data_addr(image->img, &image->bpp, &image->size_line, &image->endian);
+}

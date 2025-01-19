@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_move.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:03:12 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/01/16 21:53:21 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/01/19 09:22:33 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	move_forward(t_data *data)
 	data->render = 1;
 	if (data->world_map[(int)(data->pos_x + data->dir_x
 			* MOVE_SPEED * MOVE_SPEED_FACTOR)][(int)(data->pos_y)] == 0)
-		data->pos_x += data->dir_x * MOVE_SPEED;
+		data->pos_x += data->dir_x * MOVE_SPEED * data->fps.delta_time;
 	if (data->world_map[(int)(data->pos_x)][(int)(data->pos_y + data->dir_y
 			* MOVE_SPEED * MOVE_SPEED_FACTOR)] == 0)
-		data->pos_y += data->dir_y * MOVE_SPEED;
+		data->pos_y += data->dir_y * MOVE_SPEED * data->fps.delta_time;
 }
 
 void	move_backward(t_data *data)
@@ -30,10 +30,10 @@ void	move_backward(t_data *data)
 	data->render = 1;
 	if (data->world_map[(int)(data->pos_x - data->dir_x
 			* MOVE_SPEED * MOVE_SPEED_FACTOR)][(int)(data->pos_y)] == 0)
-		data->pos_x -= data->dir_x * MOVE_SPEED;
+		data->pos_x -= data->dir_x * MOVE_SPEED * data->fps.delta_time;
 	if (data->world_map[(int)(data->pos_x)][(int)(data->pos_y - data->dir_y
 			* MOVE_SPEED * MOVE_SPEED_FACTOR)] == 0)
-		data->pos_y -= data->dir_y * MOVE_SPEED;
+		data->pos_y -= data->dir_y * MOVE_SPEED * data->fps.delta_time;
 }
 
 void	move_left(t_data *data)
@@ -46,10 +46,10 @@ void	move_left(t_data *data)
 	data->render = 1;
 	if (data->world_map[(int)(data->pos_x + permouse_x_dir
 			* MOVE_SPEED * MOVE_SPEED_FACTOR)][(int)(data->pos_y)] == 0)
-		data->pos_x += permouse_x_dir * MOVE_SPEED;
+		data->pos_x += permouse_x_dir * MOVE_SPEED * data->fps.delta_time; 
 	if (data->world_map[(int)(data->pos_x)][(int)(data->pos_y + permouse_y_dir
 			* MOVE_SPEED * MOVE_SPEED_FACTOR)] == 0)
-		data->pos_y += permouse_y_dir * MOVE_SPEED;
+		data->pos_y += permouse_y_dir * MOVE_SPEED * data->fps.delta_time;
 }
 
 void	move_right(t_data *data)
@@ -61,9 +61,9 @@ void	move_right(t_data *data)
 	permouse_y_dir = -data->dir_x;
 	data->render = 1;
 	if (data->world_map[(int)(data->pos_x + permouse_x_dir
-			* MOVE_SPEED)][(int)(data->pos_y)] == 0)
-		data->pos_x += permouse_x_dir * MOVE_SPEED;
+			* MOVE_SPEED * MOVE_SPEED_FACTOR)][(int)(data->pos_y)] == 0)
+		data->pos_x += permouse_x_dir * MOVE_SPEED * data->fps.delta_time;
 	if (data->world_map[(int)(data->pos_x)][(int)(data->pos_y + permouse_y_dir
-			* MOVE_SPEED)] == 0)
-		data->pos_y += permouse_y_dir * MOVE_SPEED;
+			* MOVE_SPEED * MOVE_SPEED_FACTOR)] == 0)
+		data->pos_y += permouse_y_dir * MOVE_SPEED * data->fps.delta_time; 
 }

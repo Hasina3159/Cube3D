@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:50:41 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/01/18 13:34:31 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/01/19 09:17:34 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ void    move_mouse_to_center(t_data *data);
 void    init_key (t_key *key_data);
 void    key_render (t_data *data);
 int     ft_load_xpm_image(t_data *data, t_img *image, char *path);
+void    init_fps(t_fps *fps);
+void    update_fps(t_fps *fps);
 
 #endif // !FUNCTIONS_H

@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:41:18 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/01/18 16:46:34 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/01/19 09:21:44 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	rotate_left(t_data *data)
 	double	old_x_plane;
 	double	rotation;
 
-	rotation = ROTATION_SPEED;
+	rotation = ROTATION_SPEED * data->fps.delta_time;
 	if (data->key_data.mouse_left == 1)
 		rotation *= 2;
 	old_x_dir = data->dir_x;
@@ -39,7 +39,7 @@ void	rotate_right(t_data *data)
 	double	old_x_plane;
 	double	rotation;
 
-	rotation = ROTATION_SPEED;
+	rotation = ROTATION_SPEED * data->fps.delta_time;
 	if (data->key_data.mouse_right == 1)
 		rotation *= 2;
 	old_x_dir = data->dir_x;

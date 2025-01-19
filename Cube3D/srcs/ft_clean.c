@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_clean.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:49:27 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/01/17 20:40:58 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/01/19 08:37:07 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	clean_up(t_data *data)
 	mlx_hook(data->win, 2, 1L << 0, NULL, NULL);
 	mlx_hook(data->win, 17, 0L, NULL, NULL);
 	mlx_loop_hook(data->mlx, NULL, NULL);
-	if (data->img != NULL)
+	if (data->screen.img != NULL)
 	{
-		mlx_destroy_image(data->mlx, data->img);
+		mlx_destroy_image(data->mlx, data->screen.img);
 	}
 	if (data->win != NULL)
 	{

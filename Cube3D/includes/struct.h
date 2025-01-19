@@ -6,12 +6,19 @@
 /*   By: ntodisoa <ntodisoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:47:15 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/01/18 15:52:24 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/01/19 16:04:42 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
+
+typedef struct s_fps
+{
+    double	last_frame_time;
+    double	delta_time;
+    double	current_fps;
+}			t_fps;
 
 typedef struct s_dda
 {
@@ -78,19 +85,19 @@ typedef struct s_data
 	double	plane_x;
 	double	plane_y;
 	int		render;
-	void	*img;
-	int		bpp;
-	int		size_line;
-	int		endian;
 	int		width;
 	int		world_map[MAPWIDTH][MAPHEIGHT];
 	int		draw_start;
 	int		draw_end;
+	int		show_mouse;
+	int		show_mouse_enter;
+	t_fps	fps;
 	t_dda	dda;
 	t_img	image_wall_n;
 	t_img	image_wall_s;
 	t_img	image_wall_e;
 	t_img	image_wall_w;
+	t_img	screen;
 	t_key	key_data;
 }			t_data;
 

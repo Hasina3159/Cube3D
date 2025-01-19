@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:47:25 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/01/18 16:07:50 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/01/19 16:05:40 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,48 @@
 #include "../includes/functions.h"
 #include "../includes/struct.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <time.h>
+
+void calculate_fps(t_data *data)
+{
+    static int 		frames = 0;
+    static double 	start_time = 0.0;
+    static double 	fps = 0.0;
+    double 			current_time;
+	char 			output[50];
+	
+	current_time = (double)clock() / CLOCKS_PER_SEC;
+    if (start_time == 0.0)
+        start_time = current_time;
+    frames++;
+    if (current_time - start_time >= 1.0)
+    {
+        fps = frames / (current_time - start_time);
+        frames = 0;
+        start_time = current_time;
+    }
+	snprintf(output, 50, "FPS : %f", fps);
+	mlx_string_put(data->mlx, data->win, 10, 20, 0XFFFF00, output);   
+}
+
 void	draw_vertical_line(t_data *data)
 {
 	int	y;
 	int	i;
-	int	*pixels;
+	int	max;
 	t_img	*sprite;
+	t_img	*screen;
 	t_dda	*dda;
+
 
 	dda = &data->dda;
 	y = data->draw_start;
 	i = 0;
-
 	key_render (data);
-	pixels = (int *)mlx_get_data_addr(data->img, &data->bpp, &data->size_line,
-			&data->endian);
+
+	screen = &data->screen;
 	if (dda->side == 0)
 		sprite = &data->image_wall_n;
 	else if (dda->side == 2)
@@ -38,22 +65,29 @@ void	draw_vertical_line(t_data *data)
 	else if (dda->side == 3)
 		sprite = &data->image_wall_w;
 	sprite->sprite_x = (int)(data->dda.wall_hit_coord * (double)(sprite->width));
-	while (data->draw_start < 2000 && i <= data->draw_end)
+	if (y < 0)
+		y = 0;
+	max = data->draw_end;
+	if (data->draw_end >= SCREENHEIGHT)
+		max = SCREENHEIGHT - 1;
+	while (i <= max)
 	{
-		pixels[i * SCREENWIDTH + data->dda.x] = 0x1133ff;
+		screen->pixels[i * SCREENWIDTH + data->dda.x] = 0x1133ff;
 		i++;
 	}
-	while (y <= data->draw_end)
+	while (y <= max)
 	{
 		int	new_y;
 		new_y = (int)((y - data->draw_start) * ((double)sprite->height / (data->draw_end - data->draw_start)));
-		pixels[y * SCREENWIDTH + data->dda.x] = sprite->pixels[(int)(new_y * sprite->width + sprite->sprite_x)];
+		if (y >= SCREENHEIGHT)
+			break;
+		screen->pixels[y * SCREENWIDTH + data->dda.x] = sprite->pixels[(int)(new_y * sprite->width + sprite->sprite_x)];
 		y++;
 	}
-	i = data->draw_end + 1;
-	while (data->draw_end > 0 && i <= SCREENHEIGHT)
+	i = max + 1;
+	while (max > 0 && i <= SCREENHEIGHT)
 	{
-		pixels[i * SCREENWIDTH + data->dda.x] = 0x331111;
+		screen->pixels[i * SCREENWIDTH + data->dda.x] = 0x331111;
 		i++;
 	}
 }
@@ -63,7 +97,9 @@ void	perform_raycasting(t_data *data)
 	t_dda	*dda;
 
 	dda = &data->dda;
-	move_mouse_to_center(data);
+	if (data->show_mouse == 0 && data->show_mouse_enter == 0)
+		move_mouse_to_center(data);
+
 	dda->x = 0;
 	dda->old_map_x = (int)data->pos_x;
 	dda->old_map_y = (int)data->pos_y;
@@ -129,30 +165,21 @@ void	perform_raycasting(t_data *data)
 					/ 2) / dda->ray_dir_y;
 		dda->line_height = (int)(SCREENHEIGHT / dda->dist_ortho_wall);
 		data->draw_start = -dda->line_height / 2 + SCREENHEIGHT / 2;
-		if (data->draw_start < 0)
-			data->draw_start = 0;
 		data->draw_end = dda->line_height / 2 + SCREENHEIGHT / 2;
-		if (data->draw_end >= SCREENHEIGHT)
-			data->draw_end = SCREENHEIGHT - 1;
-		/*if (dda->side == 0)
-			dda->color = 0x885555;
-		else
-			dda->color = 0x442211;
-		if (dda->map_x != dda->old_map_x || dda->map_y != dda->old_map_y)
-			dda->color = 0x000000;
-		*/
 		dda->old_map_x = dda->map_x;
 		dda->old_map_y = dda->map_y;
 		if (dda->side % 2 == 0)
 			dda->wall_hit_coord = data->pos_y + dda->dist_ortho_wall * dda->ray_dir_y;
 		else
 			dda->wall_hit_coord = data->pos_x + dda->dist_ortho_wall * dda->ray_dir_x;
-		dda->wall_hit_coord -= floor(dda->wall_hit_coord);
-		if (dda->dist_ortho_wall < 1e-6)
-    		dda->dist_ortho_wall = 1e-6;
+		dda->wall_hit_coord -= (int)(dda->wall_hit_coord);
+		if (dda->dist_ortho_wall < 0.001)
+    		dda->dist_ortho_wall = 0.001;
 
 		draw_vertical_line(data);
 		dda->x++;
 	}
-	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+	mlx_put_image_to_window(data->mlx, data->win, data->screen.img, 0, 0);
+	update_fps(&data->fps);
+	calculate_fps(data);
 }

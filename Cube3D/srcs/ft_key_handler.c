@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:44:29 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/01/18 16:00:31 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/01/19 16:05:02 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,19 @@ int	handle_keypress(int keycode, t_data *data)
 		data->key_data.key_right = 1;
 	else if (keycode == KEY_ESC)
 		clean_up(data);
+	else if (keycode == KEY_ENTER)
+	{
+		if (data->show_mouse_enter == 0)
+		{
+			data->show_mouse_enter = 1;
+			mlx_mouse_show(data->mlx, data->win);
+		}
+		else
+		{
+			data->show_mouse_enter = 0;
+			mlx_mouse_hide(data->mlx, data->win);
+		}
+	}
 	return (0);
 }
 
