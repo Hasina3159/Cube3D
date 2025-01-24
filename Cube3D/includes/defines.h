@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:45:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/01/19 15:37:38 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/01/24 12:25:14 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,19 @@
 # define MAPHEIGHT 24
 # define MOVE_SPEED 0.003
 # define MOVE_SPEED_FACTOR 100
-# define ROTATION_SPEED 0.0005
+# define ROTATION_SPEED 0.001
 # define MOUSE_STEP 6
 # define IMG_WIDTH 128
 # define IMG_HEIGHT 128
+# define NORTH 0 
+# define SOUTH 2 
+# define WEST 1 
+# define EAST 3 
+
+typedef enum enum_bool 
+{
+    false,
+    true
+} e_bool;
 
 #endif // ! DEFINES_H

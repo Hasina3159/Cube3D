@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:09:36 by fhajanol          #+#    #+#             */
-/*   Updated: 2025/01/19 16:07:45 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/01/24 13:57:46 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,11 @@ int	main(int argc, char **argv)
 												0, 0, 0, 0, 0, 0, 1}, {1, 1, 1,
 												1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 												1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
+	if (argc != 2)
+		return (0);
+	int line_index = ft_check_if_all_data_exists(argv[1]);
+	char	**true_map = ft_get_map(argv[1], line_index);
+	ft_print_map(true_map);
 	data.pos_y = 12;
 	data.pos_x = 21;
 	data.dir_x = -1;
