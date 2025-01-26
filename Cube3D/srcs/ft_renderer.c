@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:47:25 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/01/19 16:05:40 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/01/26 14:44:08 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ void	perform_raycasting(t_data *data)
 					dda->side = 1;
 				else
 					dda->side = 3;			}
-			if (data->world_map[dda->map_x][dda->map_y] > 0)
+			if (data->world_map[dda->map_x][dda->map_y] != 'o')
 				dda->hit = 1;
 		}
 		if (dda->side % 2 == 0)
@@ -179,6 +179,7 @@ void	perform_raycasting(t_data *data)
 		draw_vertical_line(data);
 		dda->x++;
 	}
+	ft_draw_mini_map(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->screen.img, 0, 0);
 	update_fps(&data->fps);
 	calculate_fps(data);

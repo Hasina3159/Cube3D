@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:45:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/01/24 12:25:14 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/01/26 12:10:31 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # define SOUTH 2 
 # define WEST 1 
 # define EAST 3 
+# define SQUARE_SIZE 10 
 
 typedef enum enum_bool 
 {

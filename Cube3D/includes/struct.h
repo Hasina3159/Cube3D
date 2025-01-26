@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:47:15 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/01/19 16:04:42 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/01/26 12:00:03 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ typedef struct s_data
 	double	plane_y;
 	int		render;
 	int		width;
-	int		world_map[MAPWIDTH][MAPHEIGHT];
+	char	**world_map;
 	int		draw_start;
 	int		draw_end;
 	int		show_mouse;

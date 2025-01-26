@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 08:38:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/01/24 13:41:26 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/01/26 14:39:34 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ char **ft_get_map(char *content, int line_index)
 
 	i = 0;
 	count = 0;
+	line_index++;
 	while (i < ft_strlen(content) && count < line_index)
 	{
 		if (content[i] == '\n')

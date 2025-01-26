@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:09:36 by fhajanol          #+#    #+#             */
-/*   Updated: 2025/01/24 13:57:46 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/01/26 14:46:33 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,51 +34,21 @@ int hide_mouse (t_data *data)
 int	main(int argc, char **argv)
 {
 	t_data	data;
-	int world_map[MAPWIDTH][MAPHEIGHT] = {
-		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-		{1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, 
-		{1, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 0, 0, 0, 0, 3, 0, 3, 0, 3, 0, 0, 0, 1}, 
-		{1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 2, 2, 0, 2, 2, 0, 0, 0, 0, 3, 0, 3, 0, 3, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 3, 3, 3, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-												0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-												1}, {1, 0, 0, 0, 0, 0, 0, 0, 0,
-												0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-												0, 0, 0, 1}, {1, 0, 0, 0, 0, 0,
-												0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-												0, 0, 0, 0, 0, 0, 1}, {1, 4, 4,
-												4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0,
-												0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-												{1, 4, 0, 4, 0, 0, 0, 0, 4, 0,
-												0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-												0, 0, 1}, {1, 4, 0, 0, 0, 0, 5,
-												0, 4, 0, 0, 0, 2, 2, 2, 0, 0, 0,
-												0, 0, 0, 0, 0, 1}, {1, 4, 0, 4,
-												0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0,
-												0, 0, 0, 0, 0, 0, 0, 0, 1}, {1,
-												4, 0, 4, 4, 4, 4, 4, 4, 0, 0, 0,
-												0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-												1}, {1, 4, 0, 0, 0, 0, 0, 0, 0,
-												0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-												0, 0, 0, 1}, {1, 4, 4, 4, 4, 4,
-												4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0,
-												0, 0, 0, 0, 0, 0, 1}, {1, 1, 1,
-												1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-												1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
 	if (argc != 2)
 		return (0);
-	int line_index = ft_check_if_all_data_exists(argv[1]);
-	char	**true_map = ft_get_map(argv[1], line_index);
-	ft_print_map(true_map);
-	data.pos_y = 12;
-	data.pos_x = 21;
+	char	*content = ft_get_content(argv[1]);
+	int line_index = ft_check_if_all_data_exists(content);
+	data.world_map = ft_get_map(content, line_index);
+	// ft_print_map(data.world_map);
+
+	if (ft_check_map(data.world_map) == false)
+	{
+		// ft_print_map(data.world_map);
+		return (0);
+	}
+	ft_get_player_position(data.world_map, &data.pos_y, &data.pos_x);
+	// ft_print_map(data.world_map);
+
 	data.dir_x = -1;
 	data.dir_y = 0;
 	data.plane_x = 0;
@@ -96,13 +66,6 @@ int	main(int argc, char **argv)
 			"Cube3D Petera");
 	data.screen.img = mlx_new_image(data.mlx, SCREENWIDTH, SCREENHEIGHT);
 	data.screen.pixels = (int *)mlx_get_data_addr(data.screen.img, &data.screen.bpp, &data.screen.size_line, &data.screen.endian);
-	for (int i = 0; i < MAPWIDTH; i++)
-	{
-		for (int j = 0; j < MAPHEIGHT; j++)
-		{
-			data.world_map[i][j] = world_map[i][j];
-		}
-	}
 	init_fps(&data.fps);
 
 	mlx_hook(data.win, 2, 1L << 0, handle_keypress, &data);

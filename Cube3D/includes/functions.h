@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:50:41 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/01/24 13:42:47 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/01/26 14:40:26 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,9 @@ int		ft_check_if_all_data_exists (char *content);
 int		ft_check_if_all_data_exists (char *content);
 char	**ft_get_map(char *content, int line_index);
 void	ft_print_map(char **map);
+e_bool	ft_check_map(char **map);
+e_bool	ft_get_player_position(char **map, double *px, double *py);
+
+void    ft_draw_mini_map(t_data *data);
 
 #endif // !FUNCTIONS_H
