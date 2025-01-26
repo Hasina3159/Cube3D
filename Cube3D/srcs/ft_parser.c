@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 08:38:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/01/26 14:39:34 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/01/26 15:43:49 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,10 @@ char	*ft_get_data(char *content, char *data_name, int *index)
 		free (path);
 		*index = -1;
 		path = NULL;
+		printf("Error!\n[%s] Doublons!\n", data_name);
 	}
+	else if (count == 0)
+		printf("Error!\n[%s] N'existe pas!\n", data_name);
 	ft_free_split(splitted);
 	return (path);
 }
@@ -96,7 +99,7 @@ int	ft_check_if_all_data_exists (char *content)
 
 	all_data = ft_split("NO SO WE EA F C", ' ');
 	if (all_data == NULL)
-		return (NULL);
+		return (0);
 	i = 0;
 	max_index = INT_MIN;
 	while (all_data[i])
@@ -106,13 +109,13 @@ int	ft_check_if_all_data_exists (char *content)
 			max_index = index;
 		if (data == NULL)
 		{
-			printf("Error!\n[%s] n'existe pas ou existe mais en doublons!\n", all_data[i]);
 			ft_free_split(all_data);
-			return (0);
+			return (-1);
 		}
 		free(data);
 		i++;
 	}
+	ft_free_split(all_data);
 	return (max_index + 1);
 }
 

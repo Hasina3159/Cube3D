@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:03:12 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/01/26 14:43:02 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/01/26 15:08:25 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,10 @@
 
 void	move_forward(t_data *data)
 {
-	/*
-	ft_printf("FORWARD : x : %d, y : %d, char : %c\n", (int)(data->pos_x + data->dir_x
-			* MOVE_SPEED * MOVE_SPEED_FACTOR), (int)(data->pos_y), data->world_map[(int)(data->pos_x + data->dir_x
-			* MOVE_SPEED * MOVE_SPEED_FACTOR)][(int)(data->pos_y)]);
-	*/
 	data->render = 1;
 	if (data->world_map[(int)(data->pos_x + data->dir_x
 			* MOVE_SPEED * MOVE_SPEED_FACTOR)][(int)(data->pos_y)] == 'o')
-			{
-				//ft_printf("FORWARD\n");
-				data->pos_x += data->dir_x * MOVE_SPEED * data->fps.delta_time;
-			}
+		data->pos_x += data->dir_x * MOVE_SPEED * data->fps.delta_time;
 	if (data->world_map[(int)(data->pos_x)][(int)(data->pos_y + data->dir_y
 			* MOVE_SPEED * MOVE_SPEED_FACTOR)] == 'o')
 		data->pos_y += data->dir_y * MOVE_SPEED * data->fps.delta_time;

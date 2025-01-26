@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 09:15:49 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/01/19 13:07:23 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/01/26 15:07:59 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,3 @@ void update_fps(t_fps *fps)
     fps->delta_time = current_time - fps->last_frame_time;
     fps->last_frame_time = current_time;
 }
-

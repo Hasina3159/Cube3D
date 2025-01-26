@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 12:08:23 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/01/26 14:28:11 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/01/26 15:46:59 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void ft_draw_mini_map(t_data *data)
 		while (data->world_map[y][x])
 		{
 			if (data->world_map[y][x] == '1')
-				ft_draw_square(data, x * SQUARE_SIZE + x, y * SQUARE_SIZE + y, 0x55FF0000);
+				ft_draw_square(data, x * SQUARE_SIZE + x, y * SQUARE_SIZE + y, 0x00FF0000);
 			x++;
 		}
 		y++;
