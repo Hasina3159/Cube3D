@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:47:15 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/01/26 12:00:03 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/01 16:11:21 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
+
+#include "functions.h"
+#include "defines.h"
 
 typedef struct s_fps
 {
@@ -74,6 +77,19 @@ typedef struct s_key
 	int	mouse_right;
 }		t_key;
 
+typedef struct s_sprite
+{
+	t_img	image;
+	double	pos_x;
+	double	pos_y;
+	double	pos_z;
+	int		screen_x;
+	int		draw_start;
+	int		draw_end;
+	int		screen_height;
+	e_bool	render;
+}			t_sprite;
+
 typedef struct s_data
 {
 	void	*mlx;
@@ -99,7 +115,10 @@ typedef struct s_data
 	t_img	image_wall_w;
 	t_img	screen;
 	t_key	key_data;
+	t_sprite	sprite;
+
 }			t_data;
+
 
 
 #endif // !STRUCT_H

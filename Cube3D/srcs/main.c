@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:09:36 by fhajanol          #+#    #+#             */
-/*   Updated: 2025/01/26 15:40:54 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/01 16:17:59 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int	main(int argc, char **argv)
 	if (ft_check_map(data.world_map) == false || line_index == -1)
 		return (0);
 	ft_get_player_position(data.world_map, &data.pos_y, &data.pos_x);
-
+	ft_get_sprite_position(data.world_map, &data.sprite.pos_y, &data.sprite.pos_x);
+	printf("sprite (%f, %f)\n", data.sprite.pos_x, data.sprite.pos_y);
 	data.dir_x = -1;
 	data.dir_y = 0;
 	data.plane_x = 0;
@@ -59,6 +60,7 @@ int	main(int argc, char **argv)
 	ft_load_xpm_image(&data, &data.image_wall_s, ft_get_data(content, "SO", &index_data));
 	ft_load_xpm_image(&data, &data.image_wall_e, ft_get_data(content, "EA", &index_data));
 	ft_load_xpm_image(&data, &data.image_wall_w, ft_get_data(content, "WE", &index_data));
+	ft_load_xpm_image(&data, &data.sprite.image, "./sprite.xpm");
 	data.win = mlx_new_window(data.mlx, SCREENWIDTH, SCREENHEIGHT,
 			"Cube3D Petera");
 	data.screen.img = mlx_new_image(data.mlx, SCREENWIDTH, SCREENHEIGHT);

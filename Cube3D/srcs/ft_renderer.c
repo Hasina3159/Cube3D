@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_renderer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:47:25 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/01/26 14:44:08 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/01 16:17:02 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,16 +95,24 @@ void	draw_vertical_line(t_data *data)
 void	perform_raycasting(t_data *data)
 {
 	t_dda	*dda;
+	e_bool	show;
+	e_bool	in;
+	int		start;
+	int		end;
 
 	dda = &data->dda;
+	show = false;
 	if (data->show_mouse == 0 && data->show_mouse_enter == 0)
 		move_mouse_to_center(data);
-
+	start = -1;
+	end = -1;
 	dda->x = 0;
 	dda->old_map_x = (int)data->pos_x;
 	dda->old_map_y = (int)data->pos_y;
 	while (dda->x < SCREENWIDTH)
 	{
+		in = false;
+		data->sprite.render = false;
 		dda->camera_x = 2 * dda->x / (double)SCREENWIDTH - 1;
 		dda->ray_dir_x = data->dir_x + data->plane_x * dda->camera_x;
 		dda->ray_dir_y = data->dir_y + data->plane_y * dda->camera_x;
@@ -153,10 +161,34 @@ void	perform_raycasting(t_data *data)
 				if (dda->step_y < 0)
 					dda->side = 1;
 				else
-					dda->side = 3;			}
-			if (data->world_map[dda->map_x][dda->map_y] != 'o')
+					dda->side = 3;			
+			}
+			if (data->world_map[dda->map_x][dda->map_y] == '1')
+			{
 				dda->hit = 1;
+				break;
+			}
+			if (data->world_map[dda->map_x][dda->map_y] == 'B')
+			{
+				data->sprite.render = true;
+				data->sprite.pos_z = ft_dist_calculator(data->pos_x, data->pos_y, data->sprite.pos_x, data->sprite.pos_y);
+				data->sprite.screen_x = dda->x;
+				data->sprite.screen_height = (int) (SCREENHEIGHT / data->sprite.pos_z);
+				data->sprite.draw_start = (SCREENHEIGHT / 2) - (data->sprite.screen_height / 2);
+				data->sprite.draw_end = (SCREENHEIGHT / 2) + (data->sprite.screen_height / 2);
+				//printf("SH : %d, posY : %d, height : %d, dist : %f\n", data->sprite.screen_height, data->sprite.draw_start, SCREENHEIGHT, data->sprite.pos_z);
+				if (start == -1)
+				{
+					start = dda->x;
+					show = true;
+				}
+				in = true;
+			}
 		}
+
+		if (end == -1 && start != -1 && in == false)
+			end = dda->x;
+			
 		if (dda->side % 2 == 0)
 			dda->dist_ortho_wall = (dda->map_x - data->pos_x + (1 - dda->step_x)
 					/ 2) / dda->ray_dir_x;
@@ -177,8 +209,12 @@ void	perform_raycasting(t_data *data)
     		dda->dist_ortho_wall = 0.001;
 
 		draw_vertical_line(data);
+	if (data->sprite.render)
+		draw_sprite(data);
 		dda->x++;
 	}
+	if (show)
+		printf("start : %d, end : %d, delta : %d, dist : %f, sh : %d, proportion : %f\n", start, end, end - start, data->sprite.pos_z, data->sprite.screen_height, data->sprite.screen_height / (end - start));
 	ft_draw_mini_map(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->screen.img, 0, 0);
 	update_fps(&data->fps);

@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:50:41 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/01/26 14:40:26 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/01 16:11:21 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FUNCTIONS_H
 # define FUNCTIONS_H
 # include "struct.h"
+# include "defines.h"
 
 void	perform_raycasting(t_data *data);
 void	move_forward(t_data *data);
@@ -37,11 +38,13 @@ size_t	ft_get_split_size(char **splitted);
 void	ft_free_split(char **splitted);
 char	*ft_get_data(char *content, char *data_name, int *line_index);
 int		ft_check_if_all_data_exists (char *content);
-int		ft_check_if_all_data_exists (char *content);
 char	**ft_get_map(char *content, int line_index);
 void	ft_print_map(char **map);
 e_bool	ft_check_map(char **map);
 e_bool	ft_get_player_position(char **map, double *px, double *py);
+e_bool	ft_get_sprite_position(char **map, double *px, double *py);
+double	ft_dist_calculator(double x1, double y1, double x2, double y2);
+void	draw_sprite(t_data *data);
 
 void    ft_draw_mini_map(t_data *data);
 

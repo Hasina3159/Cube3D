@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 08:38:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/01/24 10:48:49 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/01 16:11:21 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <math.h>
 #include <fcntl.h>
 #include "../includes/defines.h"
 #include "../includes/functions.h"
@@ -41,4 +42,9 @@ void	ft_free_split(char **splitted)
 	}
 	free(splitted);
 	return;
+}
+
+double	ft_dist_calculator(double x1, double y1, double x2, double y2)
+{
+	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
 }
