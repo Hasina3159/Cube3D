@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:45:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/01 16:11:21 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/02 09:59:05 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # define KEY_RIGHT 65363
 # define KEY_ESC 65307
 # define KEY_ENTER 65293
-# define SCREENWIDTH 1920
-# define SCREENHEIGHT 1080
+# define SCREENWIDTH 1080
+# define SCREENHEIGHT 720
 # define MAPWIDTH 23
 # define MAPHEIGHT 24
 # define MOVE_SPEED 0.003
