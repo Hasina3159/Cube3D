@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:44:29 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/07 15:58:41 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/07 16:22:22 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	handle_keypress(int keycode, t_data *data)
 	else if (keycode == KEY_ENTER)
 	{
 		data->show_mouse_enter ^= 1;
-		if (data->show_mouse_enter == 0)
+		if (data->show_mouse_enter != 0)
 			mlx_mouse_show(data->mlx, data->win);
 		else
 			mlx_mouse_hide(data->mlx, data->win);
