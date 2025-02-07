@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:50:41 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/01 16:11:21 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/07 14:46:25 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ e_bool	ft_get_player_position(char **map, double *px, double *py);
 e_bool	ft_get_sprite_position(char **map, double *px, double *py);
 double	ft_dist_calculator(double x1, double y1, double x2, double y2);
 void	draw_sprite(t_data *data);
+int     ft_gettime(void);
 
 void    ft_draw_mini_map(t_data *data);
 

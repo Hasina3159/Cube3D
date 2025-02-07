@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:44:29 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/01 16:11:21 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/07 15:58:41 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	handle_keypress(int keycode, t_data *data)
 		data->key_data.key_w = 1;
 	else if (keycode == KEY_S)
 		data->key_data.key_s = 1;
+	else if (keycode == KEY_SPACE)
+		data->door.door_open ^= 1;
 	else if (keycode == KEY_A)
 		data->key_data.key_a = 1;
 	else if (keycode == KEY_D)

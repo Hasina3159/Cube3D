@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:47:15 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/01 16:11:21 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/07 15:54:19 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ typedef struct s_key
 
 typedef struct s_sprite
 {
-	t_img	image;
+	t_img	image[5];
 	double	pos_x;
 	double	pos_y;
 	double	pos_z;
@@ -90,10 +90,18 @@ typedef struct s_sprite
 	e_bool	render;
 }			t_sprite;
 
+typedef struct s_door
+{
+	e_bool	door_hit;
+	e_bool	door_open;
+	t_img	door_sprite;
+}			t_door;
+
 typedef struct s_data
 {
 	void	*mlx;
 	void	*win;
+	double	z_dist[SCREENWIDTH];
 	double	pos_x;
 	double	pos_y;
 	double	dir_x;
@@ -107,6 +115,7 @@ typedef struct s_data
 	int		draw_end;
 	int		show_mouse;
 	int		show_mouse_enter;
+	t_door	door;
 	t_fps	fps;
 	t_dda	dda;
 	t_img	image_wall_n;

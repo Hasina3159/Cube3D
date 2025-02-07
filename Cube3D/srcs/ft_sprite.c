@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:58:53 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/02 08:32:26 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/07 15:43:29 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ e_bool	ft_get_sprite_position(char **map, double *px, double *py)
 		{
 			if (map[y][x] == 'B')
 			{
-				//map[y][x] = 'o';
-				*px = (double)x + 0.5;
-				*py = (double)y + 0.5;
+				map[y][x] = 'o';
+				*px = (double)x;
+				*py = (double)y;
 				return (true);
 			}
 			x++;
@@ -51,22 +51,27 @@ void draw_sprite(t_data *data)
     t_img *sprite;
     t_img *screen;
     t_dda *dda;
-
-    sprite = &data->sprite.image;
+    int     index;
+    int stripe;
+    int tex_x;
+    int new_y;
+    int color;
+    
+    sprite = &data->sprite.image[ft_gettime()];
     dda = &data->dda;
     y = data->sprite.draw_start;
     screen = &data->screen;
 
     if (y < 0)
-        y = 0;
+        return;
     
     max = data->sprite.draw_end;
     if (data->sprite.draw_end >= SCREENHEIGHT)
         max = SCREENHEIGHT - 1;
-
-    for (int stripe = data->sprite.screen_x; stripe < data->sprite.screen_x + data->sprite.screen_height; stripe++)
+    stripe = data->sprite.screen_x;
+    while (stripe < data->sprite.screen_x + data->sprite.screen_height)
     {
-        if (stripe >= 0 && stripe < SCREENWIDTH)
+        if (stripe >= 0 && stripe < SCREENWIDTH && data->z_dist[stripe] >= data->sprite.pos_z)
         {
             int tex_x = (int)((stripe - data->sprite.screen_x) * ((double)sprite->width / data->sprite.screen_height));
 
@@ -85,6 +90,7 @@ void draw_sprite(t_data *data)
                 }
             }
         }
+        stripe++;
     }
 
     for (int i = data->sprite.draw_end + 1; i < SCREENHEIGHT; i++)
