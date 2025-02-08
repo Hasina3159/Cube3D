@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:50:41 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/07 14:46:25 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/08 12:30:10 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ int		ft_check_if_all_data_exists (char *content);
 char	**ft_get_map(char *content, int line_index);
 void	ft_print_map(char **map);
 e_bool	ft_check_map(char **map);
-e_bool	ft_get_player_position(char **map, double *px, double *py);
+char	ft_get_player_position(char **map, double *px, double *py);
 e_bool	ft_get_sprite_position(char **map, double *px, double *py);
 double	ft_dist_calculator(double x1, double y1, double x2, double y2);
 void	draw_sprite(t_data *data);
 int     ft_gettime(void);
-
 void    ft_draw_mini_map(t_data *data);
+void    ft_init_direction(t_data *data, char dir);
 
 #endif // !FUNCTIONS_H

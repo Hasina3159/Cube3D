@@ -6,13 +6,14 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:41:18 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/01 16:11:21 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/08 12:45:11 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/defines.h"
 #include "../includes/functions.h"
 #include "../includes/struct.h"
+#include <stdio.h>
 
 void	rotate_left(t_data *data)
 {

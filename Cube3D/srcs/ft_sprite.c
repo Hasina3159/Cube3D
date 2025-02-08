@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:58:53 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/07 15:43:29 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/08 12:50:07 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void draw_sprite(t_data *data)
     int tex_x;
     int new_y;
     int color;
+    int i;
     
     sprite = &data->sprite.image[ft_gettime()];
     dda = &data->dda;
@@ -74,8 +75,8 @@ void draw_sprite(t_data *data)
         if (stripe >= 0 && stripe < SCREENWIDTH && data->z_dist[stripe] >= data->sprite.pos_z)
         {
             int tex_x = (int)((stripe - data->sprite.screen_x) * ((double)sprite->width / data->sprite.screen_height));
-
-            for (y = data->sprite.draw_start; y <= data->sprite.draw_end; y++)
+            y = data->sprite.draw_start;
+            while (y <= data->sprite.draw_end)
             {
                 int new_y = (int)((y - data->sprite.draw_start) * ((double)sprite->height / (data->sprite.draw_end - data->sprite.draw_start)));
 
@@ -88,13 +89,16 @@ void draw_sprite(t_data *data)
                         screen->pixels[y * SCREENWIDTH + stripe] = color;
                     }
                 }
+                y++;
             }
         }
         stripe++;
     }
 
-    for (int i = data->sprite.draw_end + 1; i < SCREENHEIGHT; i++)
+    i = data->sprite.draw_end + 1;
+    while (i < SCREENHEIGHT)
     {
         screen->pixels[i * SCREENWIDTH + data->dda.x] = 0x331111;
+        i++;
     }
 }

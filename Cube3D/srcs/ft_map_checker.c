@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 08:38:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/01 16:11:21 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/08 12:37:36 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,11 @@ e_bool  ft_check_map(char **map)
 	return (is_ok);
 }
 
-e_bool	ft_get_player_position(char **map, double *px, double *py)
+char	ft_get_player_position(char **map, double *px, double *py)
 {
-	int	x;
-	int	y;
-
+	int		x;
+	int		y;
+	char	c;
 
 	if (map == NULL)
 		return (false);
@@ -85,15 +85,16 @@ e_bool	ft_get_player_position(char **map, double *px, double *py)
 		{
 			if (map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'W' || map[y][x] == 'E')
 			{
+				c = map[y][x];
 				map[y][x] = 'o';
 				*px = (double)x;
 				*py = (double)y;
-				return (true);
+				return (c);
 			}
 			x++;
 		}
 		y++;
 	}
-	return (false);
+	return (0);
 }
 
