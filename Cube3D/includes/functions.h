@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:50:41 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/08 12:30:10 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/09 11:12:52 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,7 @@ void	draw_sprite(t_data *data);
 int     ft_gettime(void);
 void    ft_draw_mini_map(t_data *data);
 void    ft_init_direction(t_data *data, char dir);
+e_bool  ft_check_file_validity(char *path);
+int     ft_get_color(char *content, char *data_name);
 
 #endif // !FUNCTIONS_H

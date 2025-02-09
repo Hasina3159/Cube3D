@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:49:27 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/01 16:11:21 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/09 10:17:55 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 
 void	clean_up(t_data *data)
 {
-	mlx_hook(data->win, 2, 1L << 0, NULL, NULL);
+	/*mlx_hook(data->win, 2, 1L << 0, NULL, NULL);
 	mlx_hook(data->win, 17, 0L, NULL, NULL);
 	mlx_loop_hook(data->mlx, NULL, NULL);
+	*/
 	if (data->screen.img != NULL)
 	{
 		mlx_destroy_image(data->mlx, data->screen.img);
@@ -26,6 +27,7 @@ void	clean_up(t_data *data)
 	if (data->win != NULL)
 	{
 		mlx_destroy_window(data->mlx, data->win);
+
 	}
 	if (data->mlx != NULL)
 	{

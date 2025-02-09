@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:45:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/07 15:57:42 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/09 10:05:21 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@
 # include "../libft/printf/ft_printf.h"
 # include "../minilibx-linux/mlx.h"
 # include <math.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <errno.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 
 # define KEY_W 119
 # define KEY_A 97

@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 08:38:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/01 16:11:21 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/09 12:03:28 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ char	*ft_get_content(char *path)
 	char	*tmp;
 	char	buffer[1024];
 	
+	if (ft_check_file_validity(path) == false)
+		return (NULL);
 	final = NULL;
 	tmp = NULL;
 	fd = open(path, O_RDONLY);
-	if (fd < 0)
-		return (NULL);
 	size = read(fd, buffer, 1023);
 	while (size > 0)
 	{
@@ -42,6 +42,8 @@ char	*ft_get_content(char *path)
 		final = tmp;
 		size = read(fd, buffer, 1023);
 	}
+	if (final == NULL)
+		printf("Error\n%s: Is a directory\n", path);
 	return (final);
 }
 
@@ -119,6 +121,7 @@ int	ft_check_if_all_data_exists (char *content)
 	return (max_index + 1);
 }
 
+
 char **ft_get_map(char *content, int line_index)
 {
 	int		i;
@@ -128,6 +131,52 @@ char **ft_get_map(char *content, int line_index)
 	i = 0;
 	count = 0;
 	line_index++;
+	while (i < ft_strlen(content) && count < line_index)
+	{
+		if (content[i] == '\n')
+			count++;
+		i++;
+	}
+	if (count == line_index)
+		map = ft_split((content + i), '\n');
+	else
+		map = NULL;
+	return (map);
+}
+
+int	ft_get_longest(char *content, int line_index)
+{
+	int		longest;
+	int		i;
+	char	**map;
+
+	map = ft_get_map(content, line_index);
+	if (map == NULL)
+		return (0);
+	
+	longest = 0;
+	i = 0;
+	while (map[i])
+	{
+		if (ft_strlen(map[i]) > longest)
+			longest = ft_strlen(map[i]);
+		i++;
+	}
+	ft_free_split(map);
+	return (longest);
+}
+
+char **ft_get_true_map(char *content, int line_index)
+{
+	int		i;
+	int		count;
+	char	**map;
+	int		size;
+
+	i = 0;
+	count = 0;
+	line_index++;
+	size = ft_get_longest(content, line_index);
 	while (i < ft_strlen(content) && count < line_index)
 	{
 		if (content[i] == '\n')

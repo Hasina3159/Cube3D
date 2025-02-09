@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:47:15 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/07 16:28:53 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/09 10:47:13 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,8 @@ typedef struct s_data
 	double	plane_y;
 	int		render;
 	int		width;
+	int		color_sky;
+	int		color_ground;
 	char	**world_map;
 	int		draw_start;
 	int		draw_end;
