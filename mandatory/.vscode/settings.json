@@ -1,0 +1,18 @@
+{
+    "files.associations": {
+        "header.h": "c",
+        "stdlib.h": "c",
+        "defines.h": "c",
+        "struct.h": "c",
+        "functions.h": "c",
+        "ft_printf.h": "c",
+        "unistd.h": "c",
+        "array": "c",
+        "string": "c",
+        "string_view": "c",
+        "fcntl.h": "c",
+        "cmath": "c",
+        "stdio.h": "c",
+        "types.h": "c"
+    }
+}
