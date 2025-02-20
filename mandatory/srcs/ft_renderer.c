@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:47:25 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/14 14:42:41 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/20 15:59:22 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	draw_vertical_line(t_data *data)
 	t_img	*screen;
 	t_dda	*dda;
 
-	printf("dist : %f\n", data->dda.wall_hit_coord);
 	dda = &data->dda;
 	y = data->draw_start;
 	i = 0;

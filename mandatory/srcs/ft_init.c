@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:24:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/14 13:07:13 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/20 17:28:06 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 #include "../includes/defines.h"
 #include "../includes/functions.h"
 #include "../includes/struct.h"
+
+void ft_init_struct(t_data *data)
+{
+    data->image_wall_n.img = NULL;
+    data->image_wall_s.img = NULL;
+    data->image_wall_e.img = NULL;
+    data->image_wall_w.img = NULL;
+    data->screen.img = NULL;
+}
 
 e_bool  ft_is_str_num(char *str)
 {

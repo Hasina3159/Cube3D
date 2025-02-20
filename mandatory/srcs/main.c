@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:09:36 by fhajanol          #+#    #+#             */
-/*   Updated: 2025/02/14 13:28:48 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/20 17:38:41 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,24 +56,30 @@ int	main(int argc, char **argv)
 	char	player;
 	t_data	data;
 	char	*imgs;
-	
+
 	if (argc != 2)
 	{
 		printf("Error\nArg number must be two!");
 		return (0);
 	}
+	ft_init_struct(&data);
 	data.content = ft_get_content(argv[1]);
 	if (data.content == NULL)
 		return (0);
 	int line_index = ft_check_if_all_data_exists(data.content);
 	data.world_map = ft_get_map(data.content, line_index);
-	if (ft_check_map(data.world_map) == false || line_index == -1)
+	if (ft_check_map_char(data.world_map) == false || ft_check_map(data.world_map) == false || line_index == -1)
+	{
+		free(data.content);
+		ft_free_split(data.world_map);
 		return (0);
+	}
 	player = ft_get_player_position(data.world_map, &data.pos_y, &data.pos_x);
 	if (!player)
 	{
 		printf("Error\nPlayer not found\n");
 		free(data.content);
+		ft_free_split(data.world_map);
 		return (0);
 	}
 	data.color_ground = ft_get_color(data.content, "F");
@@ -87,7 +93,6 @@ int	main(int argc, char **argv)
 	if (imgs != NULL)
 	{
 		free(imgs);
-		free(data.content);
 		clean_up(&data);
 		return (1);
 	}

@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 08:38:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/14 12:41:55 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/20 17:42:02 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void  ft_flood_fill (char **map, int x, int y, e_bool *ret)
 		*ret = false;
 		return;
 	}
-
 	if (ft_is_valid_char(map[y][x + 1], " ") || map[y][x + 1] == 0)
 		*ret = false;
 	if (ft_is_valid_char(map[y + 1][x], " ") || map[y + 1][x] == 0)
@@ -50,10 +49,7 @@ void  ft_flood_fill (char **map, int x, int y, e_bool *ret)
 	if (ft_is_valid_char(map[y - 1][x], " ") || map[y - 1][x] == 0)
 		*ret = false;
 	if (*ret == false)
-	{
-		printf("pos (%d, %d)\n", x, y);
 		return;
-	}
 	map[y][x] = 'o';
 	if (map[y][x + 1] == '0')
 		ft_flood_fill(map, x + 1, y, ret);
@@ -127,24 +123,30 @@ e_bool ft_check_map_char(char **map)
 {
 	int	i;
 	int	j;
-	int	perso_count;
-	
+	int	player_count;
+
 	i = 0;
+	player_count = 0;
 	while (map[i])
 	{
 		j = 0;
-		while (map[j])
+		while (map[i][j])
 		{
+			if (ft_is_valid_char(map[i][j], "NSEW"))
+				player_count++;
 			if (!ft_is_valid_char(map[i][j], "01NSEW "))
 			{
 				printf("Error!\nMap contains Invalid character [%c].\n", map[i][j]);
 				return (false);
 			}
-			else if (ft_is_valid_char(map[i][j], "01NSEW"))
-			 	perso_count++;
 			j++;
 		}
 		i++;
+	}
+	if (player_count != 1)
+	{
+		printf("Error!\nInvalid player count.\n");
+		return (false);
 	}
 	return (true);
 }

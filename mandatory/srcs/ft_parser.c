@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 08:38:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/09 12:03:28 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/20 16:16:15 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_get_content(char *path)
 	char	*final;
 	char	*tmp;
 	char	buffer[1024];
-	
+
 	if (ft_check_file_validity(path) == false)
 		return (NULL);
 	final = NULL;
