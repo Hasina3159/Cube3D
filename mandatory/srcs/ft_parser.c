@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 08:38:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/20 16:16:15 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/21 19:32:14 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,13 @@ char	*ft_get_data(char *content, char *data_name, int *index)
 		path = NULL;
 		printf("Error!\n[%s] Doublons!\n", data_name);
 	}
-	else if (count == 0)
-		printf("Error!\n[%s] N'existe pas!\n", data_name);
 	ft_free_split(splitted);
+	if (count == 0)
+	{
+		printf("Error!\n-> [%s] N'existe pas!\n", data_name);
+		free(path);
+		return(NULL);
+	}
 	return (path);
 }
 
@@ -112,7 +116,7 @@ int	ft_check_if_all_data_exists (char *content)
 		if (data == NULL)
 		{
 			ft_free_split(all_data);
-			return (-1);
+			return (0);
 		}
 		free(data);
 		i++;

@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:09:36 by fhajanol          #+#    #+#             */
-/*   Updated: 2025/02/20 17:38:41 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/21 19:33:41 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ char	*ft_load_images(t_data *data, char *content)
 		return (tmp);
 	free(tmp);
 	tmp = ft_get_data(content, "EA", &index_data);
+	printf("\nPATH : %s\n", tmp);
 	if (ft_load_xpm_image(data, &data->image_wall_e, tmp) == false)
 		return (tmp);
 	free(tmp);
@@ -56,6 +57,7 @@ int	main(int argc, char **argv)
 	char	player;
 	t_data	data;
 	char	*imgs;
+	int line_index;
 
 	if (argc != 2)
 	{
@@ -66,7 +68,12 @@ int	main(int argc, char **argv)
 	data.content = ft_get_content(argv[1]);
 	if (data.content == NULL)
 		return (0);
-	int line_index = ft_check_if_all_data_exists(data.content);
+	line_index = ft_check_if_all_data_exists(data.content);
+	if (line_index == 0)
+	{
+		free(data.content);
+		return (0);
+	}
 	data.world_map = ft_get_map(data.content, line_index);
 	if (ft_check_map_char(data.world_map) == false || ft_check_map(data.world_map) == false || line_index == -1)
 	{
