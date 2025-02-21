@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:45:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/09 10:05:21 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/21 21:57:56 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # define MAPWIDTH 23
 # define MAPHEIGHT 24
 # define MOVE_SPEED 0.003
-# define MOVE_SPEED_FACTOR 100
+# define MOVE_SPEED_FACTOR 300
 # define ROTATION_SPEED 0.001
 # define MOUSE_STEP 6
 # define IMG_WIDTH 128

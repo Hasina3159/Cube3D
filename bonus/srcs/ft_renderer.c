@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:47:25 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/09 12:34:55 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/21 21:58:54 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,7 @@ void	perform_raycasting(t_data *data)
 					break;
 				}
 			}
-			if (data->world_map[dda->map_x][dda->map_y] == '1')
+			if (data->world_map[dda->map_x][dda->map_y] == '1' || dda->map_x <= 0 || dda->map_y <= 0 || dda->map_x >= ft_get_split_size(data->world_map) - 1 || dda->map_y >= ft_strlen(data->world_map[dda->map_x]) - 1)
 			{
 				dda->hit = 1;
 				break;
