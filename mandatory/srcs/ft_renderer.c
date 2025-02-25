@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:47:25 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/20 15:59:22 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/21 21:05:47 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	perform_raycasting(t_data *data)
 			dda->side_dist_y = (dda->map_y + 1.0 - data->pos_y)
 				* dda->delta_dist_y;
 		}
-		
+
 		while (dda->hit == 0)
 		{
 			if (dda->side_dist_x < dda->side_dist_y)
@@ -133,15 +133,16 @@ void	perform_raycasting(t_data *data)
 				if (dda->step_y < 0)
 					dda->side = 1;
 				else
-					dda->side = 3;			
+					dda->side = 3;
 			}
-			if (data->world_map[dda->map_x][dda->map_y] == '1')
+			printf("map(%d, %d) : max(%d, %d)\n", dda->map_x, dda->map_y, ft_get_split_size(data->world_map), ft_strlen(data->world_map[dda->map_x]));
+			if (data->world_map[dda->map_x][dda->map_y] == '1' || dda->map_x <= 0 || dda->map_y <= 0 || dda->map_x >= ft_get_split_size(data->world_map) - 1 || dda->map_x >= ft_strlen(data->world_map[dda->map_x]) - 1)
 			{
 				dda->hit = 1;
 				break;
 			}
 		}
-			
+
 		if (dda->side % 2 == 0)
 			dda->dist_ortho_wall = (dda->map_x - data->pos_x + (1 - dda->step_x)
 					/ 2) / dda->ray_dir_x;

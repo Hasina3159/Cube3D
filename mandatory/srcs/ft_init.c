@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:24:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/20 17:28:06 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/21 19:48:24 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,13 @@ int  ft_get_color(char *content, char *data_name)
     {
         free(color_str);
         ft_free_split(splitted);
-        return (-1);        
+        return (-1);
     }
-    if (!ft_is_str_num(splitted[0]) || !ft_is_str_num(splitted[1]) || !ft_is_str_num(splitted[2]))
+    if (!ft_is_str_num(splitted[0]) || !ft_is_str_num(splitted[1]) || !ft_is_str_num(splitted[2]) || ft_atoi(splitted[0]) > 255 || ft_atoi(splitted[1]) > 255 || ft_atoi(splitted[2]) > 255)
     {
         free(color_str);
         ft_free_split(splitted);
-        return (-1);        
+        return (-1);
     }
     color = 0;
     color = (ft_atoi(splitted[0]) << 16) | (ft_atoi(splitted[1]) << 8) | ft_atoi(splitted[2]);

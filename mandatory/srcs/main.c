@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:09:36 by fhajanol          #+#    #+#             */
-/*   Updated: 2025/02/21 19:33:41 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/21 19:49:07 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_load_images(t_data *data, char *content)
 {
 	int		index_data;
 	char	*tmp;
-	
+
 	tmp = ft_get_data(content, "NO", &index_data);
 	if (ft_load_xpm_image(data, &data->image_wall_n, tmp) == false)
 		return (tmp);
@@ -32,7 +32,6 @@ char	*ft_load_images(t_data *data, char *content)
 		return (tmp);
 	free(tmp);
 	tmp = ft_get_data(content, "EA", &index_data);
-	printf("\nPATH : %s\n", tmp);
 	if (ft_load_xpm_image(data, &data->image_wall_e, tmp) == false)
 		return (tmp);
 	free(tmp);
@@ -91,6 +90,13 @@ int	main(int argc, char **argv)
 	}
 	data.color_ground = ft_get_color(data.content, "F");
 	data.color_sky = ft_get_color(data.content, "C");
+	if (data.color_ground < 0)
+	{
+		printf("Error\nInvalid color value");
+		free(data.content);
+		ft_free_split(data.world_map);
+		return (0);
+	}
 	ft_init_direction(&data, player);
 	data.render = 0;
 	data.mlx = mlx_init();

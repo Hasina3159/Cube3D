@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:50:41 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/20 17:28:23 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/21 19:43:22 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ void    ft_init_direction(t_data *data, char dir);
 e_bool  ft_check_file_validity(char *path);
 int     ft_get_color(char *content, char *data_name);
 void    ft_init_struct(t_data *data);
+e_bool  ft_check_map_char(char **map);
 
 #endif // !FUNCTIONS_H

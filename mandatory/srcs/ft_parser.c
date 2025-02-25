@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 08:38:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/21 19:32:14 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/21 20:56:12 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,18 @@
 #include "../includes/defines.h"
 #include "../includes/functions.h"
 
+e_bool	init_get_content(int *fd, char *tmp, char *path, char *final)
+{
+	if (ft_check_file_validity(path) == false)
+		return (false);
+	final = NULL;
+	tmp = NULL;
+	fd = open(path, O_RDONLY);
+	if (fd == -1)
+		return (false);
+	return (true);
+}
+
 char	*ft_get_content(char *path)
 {
 	int		fd;
@@ -24,11 +36,8 @@ char	*ft_get_content(char *path)
 	char	*tmp;
 	char	buffer[1024];
 
-	if (ft_check_file_validity(path) == false)
+	if (init_get_content(&fd, tmp, path, final) == false)
 		return (NULL);
-	final = NULL;
-	tmp = NULL;
-	fd = open(path, O_RDONLY);
 	size = read(fd, buffer, 1023);
 	while (size > 0)
 	{
@@ -65,7 +74,7 @@ char	*ft_get_data(char *content, char *data_name, int *index)
 	{
 		split_path = ft_split(splitted[i], ' ');
 		if (split_path[0] == NULL)
-			continue;
+			continue ;
 		if (ft_strncmp(data_name, split_path[0], ft_strlen(data_name)) == 0 && ft_get_split_size(split_path) == 2)
 		{
 			count++;
