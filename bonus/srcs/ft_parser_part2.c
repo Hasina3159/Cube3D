@@ -6,7 +6,7 @@
 /*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 08:08:50 by fhajanol          #+#    #+#             */
-/*   Updated: 2025/03/01 10:16:25 by fhajanol         ###   ########.fr       */
+/*   Updated: 2025/03/01 11:24:49 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int	pp(char *to_split, int *count, char *data_name, char **path)
 		(*count)++;
 		if (*count == 1)
 			*path = ft_strdup(split_path[1]);
+		ft_free_split(split_path);
 		return (2);
 	}
 	ft_free_split(split_path);

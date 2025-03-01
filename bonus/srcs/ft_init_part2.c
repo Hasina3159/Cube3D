@@ -6,7 +6,7 @@
 /*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 07:55:50 by fhajanol          #+#    #+#             */
-/*   Updated: 2025/03/01 08:01:47 by fhajanol         ###   ########.fr       */
+/*   Updated: 2025/03/01 11:28:09 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@ int	ft_get_color_pt2(char **splitted, char *data_name)
 	printf("type : %s, (%d,%d,%d), color : %d\n", data_name,
 		ft_atoi(splitted[0]), ft_atoi(splitted[1]), ft_atoi(splitted[2]),
 		color);
+	ft_free_split(splitted);
 	return (color);
 }

@@ -6,7 +6,7 @@
 /*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:24:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/01 08:24:48 by fhajanol         ###   ########.fr       */
+/*   Updated: 2025/03/01 11:26:41 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ int	ft_get_color(char *content, char *data_name)
 		ft_free_split(splitted);
 		return (-1);
 	}
+	free(color_str);
 	return (ft_get_color_pt2(splitted, data_name));
 }
