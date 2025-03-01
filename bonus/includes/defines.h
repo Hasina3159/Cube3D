@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
+/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:45:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/21 21:57:56 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/01 10:17:15 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 # include "../libft/libft.h"
 # include "../libft/printf/ft_printf.h"
 # include "../minilibx-linux/mlx.h"
+# include <errno.h>
+# include <fcntl.h>
 # include <math.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <errno.h>
-#include <sys/types.h>
-#include <sys/stat.h>
+# include <stdio.h>
+# include <sys/stat.h>
+# include <sys/types.h>
+# include <unistd.h>
 
 # define KEY_W 119
 # define KEY_A 97
@@ -43,16 +43,16 @@
 # define MOUSE_STEP 6
 # define IMG_WIDTH 128
 # define IMG_HEIGHT 128
-# define NORTH 0 
-# define SOUTH 2 
-# define WEST 1 
-# define EAST 3 
-# define SQUARE_SIZE 10 
+# define NORTH 0
+# define SOUTH 2
+# define WEST 1
+# define EAST 3
+# define SQUARE_SIZE 10
 
-typedef enum enum_bool 
+typedef enum enum_bool
 {
-    false,
-    true
-} e_bool;
+	false,
+	true
+}	e_bool;
 
 #endif // ! DEFINES_H

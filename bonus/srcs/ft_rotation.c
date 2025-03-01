@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rotation.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
+/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:41:18 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/08 12:45:11 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/01 09:38:02 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ void	rotate_right(t_data *data)
 		* cos(-rotation);
 }
 
-void move_mouse_to_center(t_data *data)
+void	to_center_part2(t_data *data, t_dda *dda);
+
+void	move_mouse_to_center(t_data *data)
 {
 	t_dda	*dda;
-	int		dx;
-	int		dy;
 
 	dda = &data->dda;
 	mlx_mouse_get_pos(data->mlx, data->win, &dda->mouse_x, &dda->mouse_y);
@@ -71,23 +71,39 @@ void move_mouse_to_center(t_data *data)
 		data->key_data.mouse_left = 0;
 		data->key_data.mouse_right = 0;
 	}
-	if (dda->mouse_x + 10 < (SCREENWIDTH / 2) )
-		mlx_mouse_move(data->mlx, data->win, ((SCREENWIDTH / 2) - 10), dda->mouse_y);
-	if (dda->mouse_x - 10 > (SCREENWIDTH / 2) )
-		mlx_mouse_move(data->mlx, data->win, ((SCREENWIDTH / 2) + 10), dda->mouse_y);
-	if (dda->mouse_y + 10 < (SCREENHEIGHT / 2) )
-		mlx_mouse_move(data->mlx, data->win, dda->mouse_x, ((SCREENHEIGHT / 2) - 10));
-	if (dda->mouse_y - 10 > (SCREENHEIGHT / 2) )
-		mlx_mouse_move(data->mlx, data->win, dda->mouse_x, ((SCREENHEIGHT / 2) + 10));
+	if (dda->mouse_x + 10 < (SCREENWIDTH / 2))
+		mlx_mouse_move(data->mlx, data->win, ((SCREENWIDTH / 2) - 10),
+			dda->mouse_y);
+	if (dda->mouse_x - 10 > (SCREENWIDTH / 2))
+		mlx_mouse_move(data->mlx, data->win, ((SCREENWIDTH / 2) + 10),
+			dda->mouse_y);
+	to_center_part2(data, dda);
+}
+
+void	to_center_part2(t_data *data, t_dda *dda)
+{
+	int	dx;
+	int	dy;
+
+	if (dda->mouse_y + 10 < (SCREENHEIGHT / 2))
+		mlx_mouse_move(data->mlx, data->win, dda->mouse_x, ((SCREENHEIGHT / 2)
+				- 10));
+	if (dda->mouse_y - 10 > (SCREENHEIGHT / 2))
+		mlx_mouse_move(data->mlx, data->win, dda->mouse_x, ((SCREENHEIGHT / 2)
+				+ 10));
 	mlx_mouse_get_pos(data->mlx, data->win, &dda->mouse_x, &dda->mouse_y);
 	dx = abs(dda->mouse_x - (SCREENWIDTH / 2)) - MOUSE_STEP;
 	dy = abs(dda->mouse_y - (SCREENHEIGHT / 2)) - MOUSE_STEP;
-	if (dda->mouse_x < (SCREENWIDTH / 2) )
-		mlx_mouse_move(data->mlx, data->win, dda->mouse_x + MOUSE_STEP + dx, dda->mouse_y);
-	if (dda->mouse_x > (SCREENWIDTH / 2) )
-		mlx_mouse_move(data->mlx, data->win, dda->mouse_x - MOUSE_STEP - dx, dda->mouse_y);
-	if (dda->mouse_y > (SCREENHEIGHT / 2) )
-		mlx_mouse_move(data->mlx, data->win, dda->mouse_x, dda->mouse_y - MOUSE_STEP - dy);
-	if (dda->mouse_y < (SCREENHEIGHT / 2) )
-		mlx_mouse_move(data->mlx, data->win, dda->mouse_x, dda->mouse_y + MOUSE_STEP + dy);
+	if (dda->mouse_x < (SCREENWIDTH / 2))
+		mlx_mouse_move(data->mlx, data->win, dda->mouse_x + MOUSE_STEP + dx,
+			dda->mouse_y);
+	if (dda->mouse_x > (SCREENWIDTH / 2))
+		mlx_mouse_move(data->mlx, data->win, dda->mouse_x - MOUSE_STEP - dx,
+			dda->mouse_y);
+	if (dda->mouse_y > (SCREENHEIGHT / 2))
+		mlx_mouse_move(data->mlx, data->win, dda->mouse_x, dda->mouse_y
+			- MOUSE_STEP - dy);
+	if (dda->mouse_y < (SCREENHEIGHT / 2))
+		mlx_mouse_move(data->mlx, data->win, dda->mouse_x, dda->mouse_y
+			+ MOUSE_STEP + dy);
 }
