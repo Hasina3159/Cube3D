@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:41:18 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/14 13:00:35 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/28 16:29:27 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,3 @@ void	rotate_right(t_data *data)
 	data->plane_y = old_x_plane * sin(-rotation) + data->plane_y
 		* cos(-rotation);
 }
-

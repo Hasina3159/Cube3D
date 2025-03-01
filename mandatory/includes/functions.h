@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:50:41 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/21 19:43:22 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/02/28 16:09:29 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,9 @@ e_bool  ft_check_file_validity(char *path);
 int     ft_get_color(char *content, char *data_name);
 void    ft_init_struct(t_data *data);
 e_bool  ft_check_map_char(char **map);
+void	ft_free_string_and_splitted(char *str, char **splitted);
+void	ft_get_player_position_assign(double *px, double *py, int x, int y);
+e_bool	ft_is_valid_char(char c, char *s);
+
 
 #endif // !FUNCTIONS_H
