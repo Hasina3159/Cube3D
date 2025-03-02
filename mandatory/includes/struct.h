@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
+/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:47:15 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/14 13:28:43 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/01 11:04:34 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
-#include "functions.h"
-#include "defines.h"
+# include "defines.h"
+# include "functions.h"
 
 typedef struct s_fps
 {
-    double	last_frame_time;
-    double	delta_time;
-    double	current_fps;
+	double	last_frame_time;
+	double	delta_time;
+	double	current_fps;
 }			t_fps;
 
 typedef struct s_dda
@@ -30,7 +30,7 @@ typedef struct s_dda
 	int		map_y;
 	int		old_map_x;
 	int		old_map_y;
-	int 	step_x;
+	int		step_x;
 	int		step_y;
 	int		hit;
 	int		side;
@@ -65,13 +65,13 @@ typedef struct s_img
 
 typedef struct s_key
 {
-	int	key_w;
-	int	key_a;
-	int	key_s;
-	int	key_d;
-	int	key_left;
-	int	key_right;
-}		t_key;
+	int		key_w;
+	int		key_a;
+	int		key_s;
+	int		key_d;
+	int		key_left;
+	int		key_right;
+}			t_key;
 
 typedef struct s_data
 {
@@ -102,6 +102,15 @@ typedef struct s_data
 	t_key	key_data;
 }			t_data;
 
-
+typedef struct s_vline_var
+{
+	int		y;
+	int		i;
+	int		max;
+	t_img	*sprite;
+	t_img	*screen;
+	t_dda	*dda;
+	int		new_y;
+}			t_vline_var;
 
 #endif // !STRUCT_H

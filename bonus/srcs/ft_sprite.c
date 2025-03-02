@@ -3,102 +3,88 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sprite.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
+/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:58:53 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/09 11:52:52 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/01 08:45:22 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <math.h>
-#include <stdio.h>
-#include <fcntl.h>
 #include "../includes/defines.h"
 #include "../includes/functions.h"
+#include <fcntl.h>
+#include <math.h>
+#include <stdio.h>
+#include <unistd.h>
 
-e_bool	ft_get_sprite_position(char **map, double *px, double *py)
+t_sprite_var	*draw_sprite_pt1(t_data *data)
 {
-	int	x;
-	int	y;
+	t_sprite_var	*var;
 
-	if (map == NULL)
-		return (false);
-	y = 0;
-	while (map[y])
+	var = ft_calloc(sizeof(t_sprite_var), 1);
+	if (!var)
+		return (NULL);
+	var->sprite = &data->sprite.image[ft_gettime()];
+	var->dda = &data->dda;
+	var->y = data->sprite.draw_start;
+	var->screen = &data->screen;
+	if (var->y < 0)
 	{
-		x = 0;
-		while (map[y][x])
-		{
-			if (map[y][x] == 'B')
-			{
-				map[y][x] = 'o';
-				*px = (double)x;
-				*py = (double)y;
-				return (true);
-			}
-			x++;
-		}
-		y++;
+		free(var);
+		return (NULL);
 	}
-	return (false);
+	var->max = data->sprite.draw_end;
+	if (data->sprite.draw_end >= SCREENHEIGHT)
+		var->max = SCREENHEIGHT - 1;
+	var->stripe = data->sprite.screen_x;
+	return (var);
 }
 
-void draw_sprite(t_data *data)
+void	draw_sprite_inner_loop(t_sprite_var *var, t_data *data)
 {
-    int y;
-    int max;
-    t_img *sprite;
-    t_img *screen;
-    t_dda *dda;
-    int     index;
-    int stripe;
-    int tex_x;
-    int new_y;
-    int color;
-    int i;
-    
-    sprite = &data->sprite.image[ft_gettime()];
-    dda = &data->dda;
-    y = data->sprite.draw_start;
-    screen = &data->screen;
+	if (var->stripe >= 0 && var->stripe < SCREENWIDTH
+		&& data->z_dist[var->stripe] >= data->sprite.pos_z)
+	{
+		var->tex_x = (int)((var->stripe - data->sprite.screen_x)
+				* ((double)var->sprite->width / data->sprite.screen_height));
+		var->y = data->sprite.draw_start;
+		while (var->y <= data->sprite.draw_end)
+		{
+			var->new_y = (int)((var->y - data->sprite.draw_start)
+					* ((double)var->sprite->height / (data->sprite.draw_end
+							- data->sprite.draw_start)));
+			if (var->new_y >= 0 && var->new_y < var->sprite->height)
+			{
+				var->color = var->sprite->pixels[(int)(var->new_y
+						* var->sprite->width + var->tex_x)];
+				if (var->color & 0xFF000000 != 0x000000)
+				{
+					var->screen->pixels[var->y * SCREENWIDTH
+						+ var->stripe] = var->color;
+				}
+			}
+			var->y++;
+		}
+	}
+}
 
-    if (y < 0)
-        return;
-    
-    max = data->sprite.draw_end;
-    if (data->sprite.draw_end >= SCREENHEIGHT)
-        max = SCREENHEIGHT - 1;
-    stripe = data->sprite.screen_x;
-    while (stripe < data->sprite.screen_x + data->sprite.screen_height)
-    {
-        if (stripe >= 0 && stripe < SCREENWIDTH && data->z_dist[stripe] >= data->sprite.pos_z)
-        {
-            int tex_x = (int)((stripe - data->sprite.screen_x) * ((double)sprite->width / data->sprite.screen_height));
-            y = data->sprite.draw_start;
-            while (y <= data->sprite.draw_end)
-            {
-                int new_y = (int)((y - data->sprite.draw_start) * ((double)sprite->height / (data->sprite.draw_end - data->sprite.draw_start)));
+void	draw_sprite(t_data *data)
+{
+	t_sprite_var	*var;
 
-                if (new_y >= 0 && new_y < sprite->height)
-                {
-                    int color = sprite->pixels[(int)(new_y * sprite->width + tex_x)];
-
-                    if (color & 0xFF000000 != 0x000000)
-                    {
-                        screen->pixels[y * SCREENWIDTH + stripe] = color;
-                    }
-                }
-                y++;
-            }
-        }
-        stripe++;
-    }
-
-    i = data->sprite.draw_end + 1;
-    while (i < SCREENHEIGHT)
-    {
-        screen->pixels[i * SCREENWIDTH + data->dda.x] = 0x331111;
-        i++;
-    }
+	var = draw_sprite_pt1(data);
+	if (!var)
+		return ;
+	while (var->stripe < data->sprite.screen_x + data->sprite.screen_height)
+	{
+		draw_sprite_inner_loop(var, data);
+		var->stripe++;
+	}
+	var->i = data->sprite.draw_end + 1;
+	while (var->i < SCREENHEIGHT)
+	{
+		var->screen->pixels[var->i * SCREENWIDTH + data->dda.x] = 0x331111;
+		var->i++;
+	}
+	free(var);
 }

@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
+/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 08:38:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/28 16:35:25 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/01 08:23:45 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <math.h>
-#include <fcntl.h>
 #include "../includes/defines.h"
 #include "../includes/functions.h"
+#include <fcntl.h>
+#include <math.h>
+#include <unistd.h>
 
 size_t	ft_get_split_size(char **splitted)
 {
@@ -33,7 +33,7 @@ void	ft_free_split(char **splitted)
 	int	i;
 
 	if (splitted == NULL)
-		return;
+		return ;
 	i = 0;
 	while (splitted[i])
 	{
@@ -41,16 +41,10 @@ void	ft_free_split(char **splitted)
 		i++;
 	}
 	free(splitted);
-	return;
+	return ;
 }
 
 double	ft_dist_calculator(double x1, double y1, double x2, double y2)
 {
 	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
-}
-
-void	ft_free_string_and_splitted(char *str, char **splitted)
-{
-	free(str);
-	ft_free_split(splitted);
 }

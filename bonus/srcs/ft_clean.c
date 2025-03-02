@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:49:27 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/28 16:35:56 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/01 12:02:46 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ void	clean_up(t_data *data)
 		mlx_destroy_image(data->mlx, data->image_wall_e.img);
 	if (data->image_wall_w.img)
 		mlx_destroy_image(data->mlx, data->image_wall_w.img);
+	if (data->door.door_sprite.img)
+		mlx_destroy_image(data->mlx, data->door.door_sprite.img);
+
 	if (data->win != NULL)
 	{
 		mlx_destroy_window(data->mlx, data->win);
@@ -35,7 +38,6 @@ void	clean_up(t_data *data)
 		mlx_destroy_display(data->mlx);
 		free(data->mlx);
 	}
-	//free(data->content);
 	ft_free_split(data->world_map);
 	exit(0);
 }

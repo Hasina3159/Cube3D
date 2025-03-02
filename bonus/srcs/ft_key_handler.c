@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_key_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
+/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:44:29 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/07 16:22:22 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/01 08:02:14 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ int	handle_keyrelease(int keycode, t_data *data)
 	return (0);
 }
 
-void init_key (t_key *key_data)
+void	init_key(t_key *key_data)
 {
 	if (key_data == NULL)
-		return;
+		return ;
 	key_data->key_w = 0;
 	key_data->key_a = 0;
 	key_data->key_s = 0;
@@ -75,16 +75,16 @@ void init_key (t_key *key_data)
 	key_data->key_right = 0;
 	key_data->mouse_left = 0;
 	key_data->mouse_right = 0;
-	return;
+	return ;
 }
 
-void key_render (t_data *data)
+void	key_render(t_data *data)
 {
 	t_key	*key_data;
 
 	if (data == NULL)
-		return;
-	key_data = &data->key_data;	
+		return ;
+	key_data = &data->key_data;
 	if (key_data->key_w == 1)
 		move_forward(data);
 	if (key_data->key_a == 1)
@@ -97,6 +97,5 @@ void key_render (t_data *data)
 		rotate_left(data);
 	if (key_data->key_right == 1 || key_data->mouse_right == 1)
 		rotate_right(data);
-		
-	return;
+	return ;
 }

@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_checker.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
+/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 08:38:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/08 12:37:36 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/01 08:04:06 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <fcntl.h>
 #include "../includes/defines.h"
 #include "../includes/functions.h"
+#include <fcntl.h>
+#include <stdio.h>
+#include <unistd.h>
 
-void  ft_flood_fill (char **map, int x, int y, e_bool *ret)
+void	ft_flood_fill(char **map, int x, int y, e_bool *ret)
 {
-	if (map == NULL || (x < 1 || y < 1) || y >= ft_get_split_size(map) - 1 || *ret == false)
+	if (map == NULL || (x < 1 || y < 1) || y >= ft_get_split_size(map) - 1
+		|| *ret == false)
 	{
 		*ret = false;
-		return;
+		return ;
 	}
-
 	if (map[y][x + 1] == ' ' || map[y][x + 1] == 0)
 		*ret = false;
 	if (map[y + 1][x] == ' ' || map[y + 1][x] == 0)
@@ -33,7 +33,7 @@ void  ft_flood_fill (char **map, int x, int y, e_bool *ret)
 	if (map[y - 1][x] == ' ' || map[y - 1][x] == 0)
 		*ret = false;
 	if (*ret == false)
-		return;
+		return ;
 	map[y][x] = 'o';
 	if (map[y][x + 1] == '0')
 		ft_flood_fill(map, x + 1, y, ret);
@@ -45,7 +45,7 @@ void  ft_flood_fill (char **map, int x, int y, e_bool *ret)
 		ft_flood_fill(map, x, y - 1, ret);
 }
 
-e_bool  ft_check_map(char **map)
+e_bool	ft_check_map(char **map)
 {
 	e_bool	is_ok;
 	int		x;
@@ -77,13 +77,14 @@ char	ft_get_player_position(char **map, double *px, double *py)
 
 	if (map == NULL)
 		return (false);
-	y = 0;
-	while (map[y])
+	y = -1;
+	while (map[++y])
 	{
 		x = 0;
 		while (map[y][x])
 		{
-			if (map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'W' || map[y][x] == 'E')
+			if (map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'W'
+				|| map[y][x] == 'E')
 			{
 				c = map[y][x];
 				map[y][x] = 'o';
@@ -93,8 +94,6 @@ char	ft_get_player_position(char **map, double *px, double *py)
 			}
 			x++;
 		}
-		y++;
 	}
 	return (0);
 }
-
