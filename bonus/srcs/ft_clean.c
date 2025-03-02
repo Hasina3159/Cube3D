@@ -6,13 +6,26 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:49:27 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/01 12:02:46 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/02 21:43:25 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/defines.h"
 #include "../includes/functions.h"
 #include "../includes/struct.h"
+
+void	ft_clean_sprite_images(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < 5)
+	{
+		if (data->door.door_sprite.img)
+			mlx_destroy_image(data->mlx, data->sprite.image[i].img);
+		i++;
+	}
+}
 
 void	clean_up(t_data *data)
 {
@@ -28,7 +41,7 @@ void	clean_up(t_data *data)
 		mlx_destroy_image(data->mlx, data->image_wall_w.img);
 	if (data->door.door_sprite.img)
 		mlx_destroy_image(data->mlx, data->door.door_sprite.img);
-
+	ft_clean_sprite_images(data);
 	if (data->win != NULL)
 	{
 		mlx_destroy_window(data->mlx, data->win);

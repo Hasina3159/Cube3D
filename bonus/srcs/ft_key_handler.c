@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_key_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:44:29 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/01 08:02:14 by fhajanol         ###   ########.fr       */
+/*   Updated: 2025/03/02 21:36:56 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

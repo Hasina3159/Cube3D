@@ -6,16 +6,13 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 06:34:08 by fhajanol          #+#    #+#             */
-/*   Updated: 2025/03/01 11:53:57 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/02 21:43:14 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/defines.h"
 #include "../includes/functions.h"
 #include "../includes/struct.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
 
 e_bool	ft_load_images(t_data *data, char *content);
 void	ft_init_hooks(t_data *data);
@@ -42,18 +39,23 @@ e_bool	ft_load_images_pt2(t_data *data, char *content)
 	return (true);
 }
 
+void	init_some_data(t_data *data, char *content, char player)
+{
+	data->color_ground = ft_get_color(content, "F");
+	data->color_sky = ft_get_color(content, "C");
+	ft_get_sprite_position(data->world_map, &data->sprite.pos_y,
+		&data->sprite.pos_x);
+	data->door.door_open = false;
+	data->show_mouse_enter = 0;
+	ft_init_direction(data, player);
+	data->render = 0;
+	data->mlx = mlx_init();
+	data->show_mouse_enter = 0;
+}
+
 int	main_pt2(char player, t_data data, char *content, int line_index)
 {
-	data.color_ground = ft_get_color(content, "F");
-	data.color_sky = ft_get_color(content, "C");
-	ft_get_sprite_position(data.world_map, &data.sprite.pos_y,
-		&data.sprite.pos_x);
-	data.door.door_open = false;
-	data.show_mouse_enter = 0;
-	ft_init_direction(&data, player);
-	data.render = 0;
-	data.mlx = mlx_init();
-	data.show_mouse_enter = 0;
+	init_some_data(&data, content, player);
 	init_key(&data.key_data);
 	data.screen.img = NULL;
 	if (ft_load_images(&data, content) == false)

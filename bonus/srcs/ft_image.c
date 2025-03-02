@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_image.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:10:19 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/01 07:45:37 by fhajanol         ###   ########.fr       */
+/*   Updated: 2025/03/02 21:43:40 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,14 @@ int	ft_load_xpm_image(t_data *data, t_img *image, char *path)
 		image->pixels = NULL;
 		return (0);
 	}
-	image->img_path = path;
 	image->img = mlx_xpm_file_to_image(data->mlx, \
-	image->img_path, &image->height, &image->width);
+		path, &image->height, &image->width);
 	if (image->img == NULL)
 	{
-		free(image->img_path);
-		image->img_path = NULL;
+		free(path);
 		return (0);
 	}
+	free(path);
 	image->pixels = (int *)mlx_get_data_addr(image->img, \
 	&image->bpp, &image->size_line, &image->endian);
 	return (1);
