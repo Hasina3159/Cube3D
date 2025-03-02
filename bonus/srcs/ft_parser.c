@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 08:38:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/01 09:40:51 by fhajanol         ###   ########.fr       */
+/*   Updated: 2025/03/02 23:00:47 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,13 @@ char	*if_get_error(int count, char *path, char *data_name, int *index)
 		*index = -1;
 		path = NULL;
 		printf("Error!\n[%s] Doublons!\n", data_name);
+		return (NULL);
 	}
 	else if (count == 0)
+	{
 		printf("Error!\n[%s] N'existe pas!\n", data_name);
+		return (NULL);
+	}
 	return (path);
 }
 

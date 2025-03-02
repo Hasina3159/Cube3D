@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_checker.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 08:38:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/01 08:04:06 by fhajanol         ###   ########.fr       */
+/*   Updated: 2025/03/02 22:10:25 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,44 @@ char	ft_get_player_position(char **map, double *px, double *py)
 		}
 	}
 	return (0);
+}
+
+e_bool	ft_check_map_char_loop(int *i, int *player_count, char **map)
+{
+	int	j;
+
+	j = 0;
+	while (map[*i][j])
+	{
+		if (ft_is_valid_char(map[*i][j], "NSEW"))
+			*player_count = *player_count + 1;
+		if (!ft_is_valid_char(map[*i][j], "01NSEWDB "))
+		{
+			printf("Error!\nInvalid character [%c].\n", map[*i][j]);
+			return (false);
+		}
+		j++;
+	}
+	*i = *i + 1;
+	return (true);
+}
+
+e_bool	ft_check_map_char(char **map)
+{
+	int	i;
+	int	player_count;
+
+	i = 0;
+	player_count = 0;
+	while (map[i])
+	{
+		if (ft_check_map_char_loop(&i, &player_count, map) == false)
+			return (false);
+	}
+	if (player_count != 1)
+	{
+		printf("Error!\nInvalid player count.\n");
+		return (false);
+	}
+	return (true);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_part2.c                                    :+:      :+:    :+:   */
+/*   ft_utils_0.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/01 07:55:50 by fhajanol          #+#    #+#             */
-/*   Updated: 2025/03/02 21:45:59 by ntodisoa         ###   ########.fr       */
+/*   Created: 2025/02/28 16:09:06 by ntodisoa          #+#    #+#             */
+/*   Updated: 2025/02/28 16:29:50 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,18 @@
 #include "../includes/functions.h"
 #include "../includes/struct.h"
 
-void	ft_init_direction_pt2(t_data *data, char dir)
+e_bool	ft_is_valid_char(char c, char *s)
 {
-	if (dir == 'E')
-	{
-		data->dir_x = 0;
-		data->dir_y = -1;
-		data->plane_x = -0.66;
-		data->plane_y = 0;
-	}
-	else
-	{
-		data->dir_x = 0;
-		data->dir_y = 1;
-		data->plane_x = 0.66;
-		data->plane_y = 0;
-	}
-}
+	int	i;
 
-int	ft_get_color_pt2(char **splitted, char *data_name)
-{
-	int	color;
-
-	color = 0;
-	color = (ft_atoi(splitted[0]) << 16) | \
-	(ft_atoi(splitted[1]) << 8) | ft_atoi(splitted[2]);
-	ft_free_split(splitted);
-	return (color);
+	if (s == NULL)
+		return (false);
+	i = 0;
+	while (s[i])
+	{
+		if (c == s[i])
+			return (true);
+		i++;
+	}
+	return (false);
 }

@@ -6,21 +6,22 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 06:34:08 by fhajanol          #+#    #+#             */
-/*   Updated: 2025/03/02 21:43:14 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/02 23:16:16 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/defines.h"
 #include "../includes/functions.h"
 #include "../includes/struct.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 e_bool	ft_load_images(t_data *data, char *content);
 void	ft_init_hooks(t_data *data);
 
 e_bool	ft_load_images_pt2(t_data *data, char *content)
 {
-	int	index_data;
-
 	if (ft_load_xpm_image(data, &data->sprite.image[1],
 			"./sprites/sonic2.xpm") == false)
 		return (false);
@@ -55,13 +56,25 @@ void	init_some_data(t_data *data, char *content, char player)
 
 int	main_pt2(char player, t_data data, char *content, int line_index)
 {
-	init_some_data(&data, content, player);
+	data.color_ground = ft_get_color(content, "F");
+	data.color_sky = ft_get_color(content, "C");
+	ft_get_sprite_position(data.world_map, &data.sprite.pos_y,
+		&data.sprite.pos_x);
+	data.door.door_open = false;
+	data.show_mouse_enter = 0;
+	ft_init_direction(&data, player);
+	data.render = 0;
+	data.mlx = mlx_init();
+	data.show_mouse_enter = 0;
 	init_key(&data.key_data);
 	data.screen.img = NULL;
 	if (ft_load_images(&data, content) == false)
 	{
-		clean_up(&data);
 		free(content);
+		printf("--> yead\n");
+		clean_up(&data);
+		printf("--> yead2\n");
+		printf("--> yead3\n");
 		return (1);
 	}
 	free(content);

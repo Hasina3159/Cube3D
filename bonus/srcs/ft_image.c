@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:10:19 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/02 21:43:40 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/02 23:27:24 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,20 @@ int	ft_load_xpm_image(t_data *data, t_img *image, char *path)
 	if (ft_check_file_validity(path) == false)
 	{
 		image->img = NULL;
+		//TODO trouver un moyen pour free path si c'est NSEW et que le fichier n'est pas valide
+		image->img_path = 0x1L;
 		image->pixels = NULL;
+		printf("INVALID FILE\n");
 		return (0);
 	}
+	image->img_path = path;
 	image->img = mlx_xpm_file_to_image(data->mlx, \
-		path, &image->height, &image->width);
+	image->img_path, &image->height, &image->width);
 	if (image->img == NULL)
 	{
-		free(path);
+		image->img_path = NULL;
 		return (0);
 	}
-	free(path);
 	image->pixels = (int *)mlx_get_data_addr(image->img, \
 	&image->bpp, &image->size_line, &image->endian);
 	return (1);
