@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:49:27 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/02 23:26:07 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/03 20:29:32 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,42 +22,31 @@ void	ft_clean_sprite_images(t_data *data)
 	while (i < 5)
 	{
 		if (data->sprite.image[i].img_path)
+		{
+			free(data->sprite.image[i].img_path);
 			mlx_destroy_image(data->mlx, data->sprite.image[i].img);
+		}
 		i++;
 	}
 }
 
 void	clean_up(t_data *data)
 {
-	printf("1\n");
-	if (data->screen.img_path)
+	if (data->screen.img)
 		mlx_destroy_image(data->mlx, data->screen.img);
-	printf("2\n");
 	if (data->image_wall_n.img_path)
 		mlx_destroy_image(data->mlx, data->image_wall_n.img);
-	printf("3\n");
 	if (data->image_wall_s.img_path)
 		mlx_destroy_image(data->mlx, data->image_wall_s.img);
-	printf("4\n");
 	if (data->image_wall_e.img_path)
-	{
-		if (data->image_wall_e.img_path == 0x1L)
-		{
-			printf("ING\n");
-			free(data->image_wall_e.img_path);
-		}
-		else
-			mlx_destroy_image(data->mlx, data->image_wall_e.img);
-	}
-	printf("5\n");
+		mlx_destroy_image(data->mlx, data->image_wall_e.img);
 	if (data->image_wall_w.img_path)
 		mlx_destroy_image(data->mlx, data->image_wall_w.img);
-	printf("6\n");
 	if (data->door.door_sprite.img_path)
 	{
+		free(data->door.door_sprite.img_path);
 		mlx_destroy_image(data->mlx, data->door.door_sprite.img);
 	}
-	printf("7\n");
 	ft_clean_sprite_images(data);
 	if (data->win != NULL)
 		mlx_destroy_window(data->mlx, data->win);

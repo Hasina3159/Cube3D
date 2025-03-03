@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:09:36 by fhajanol          #+#    #+#             */
-/*   Updated: 2025/03/02 23:15:19 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/03 20:55:58 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,39 +24,31 @@ int		main_pt2(char player, t_data data, char *content, int line_index);
 int	show_mouse(t_data *data)
 {
 	data->show_mouse = 1;
-	//mlx_mouse_show(data->mlx, data->win);
 	return (0);
 }
 
 int	hide_mouse(t_data *data)
 {
 	data->show_mouse = 0;
-	//mlx_mouse_hide(data->mlx, data->win);
 	return (0);
 }
 
 e_bool	ft_load_images(t_data *data, char *content)
 {
-	int	index_data;
-
-	if (ft_load_xpm_image(data, &data->image_wall_n, \
-	ft_get_data(content, "NO", &index_data)) == false)
+	if (ft_load_xpm_image(data, &data->sprite.image[1],
+			ft_strdup("./sprites/sonic2.xpm")) == false)
 		return (false);
-	free(data->image_wall_n.img_path);
-	if (ft_load_xpm_image(data, &data->image_wall_s, \
-	ft_get_data(content, "SO", &index_data)) == false)
+	if (ft_load_xpm_image(data, &data->sprite.image[2],
+			ft_strdup("./sprites/sonic3.xpm")) == false)
 		return (false);
-	free(data->image_wall_s.img_path);
-	if (ft_load_xpm_image(data, &data->image_wall_e, \
-	ft_get_data(content, "EA", &index_data)) == false)
+	if (ft_load_xpm_image(data, &data->sprite.image[3],
+			ft_strdup("./sprites/sonic4.xpm")) == false)
 		return (false);
-	free(data->image_wall_e.img_path);
-	if (ft_load_xpm_image(data, &data->image_wall_w, \
-	ft_get_data(content, "WE", &index_data)) == false)
+	if (ft_load_xpm_image(data, &data->sprite.image[4],
+			ft_strdup("./sprites/sonic5.xpm")) == false)
 		return (false);
-	free(data->image_wall_w.img_path);
-	if (ft_load_xpm_image(data, &data->sprite.image[0], \
-	"./sprites/sonic1.xpm") == false)
+	if (ft_load_xpm_image(data, &data->door.door_sprite,
+			ft_strdup("./sprites/door.xpm")) == false)
 		return (false);
 	return (ft_load_images_pt2(data, content));
 }
@@ -90,20 +82,8 @@ int	main(int argc, char **argv)
 		return (0);
 	line_index = ft_check_if_all_data_exists(content);
 	data.world_map = ft_get_map(content, line_index);
-	if (ft_check_map_char(data.world_map) == false || ft_check_map(data.world_map) == false || line_index == -1)
-	{
-		free(content);
-		ft_free_split(data.world_map);
+	if (ft_second_condition(&player, &data, content, line_index) == false)
 		return (0);
-	}
-	player = ft_get_player_position(data.world_map, &data.pos_y, &data.pos_x);
-	if (!player)
-	{
-		free(content);
-		ft_free_split(data.world_map);
-		printf("Error\nPlayer not found\n");
-		return (0);
-	}
 	data.show_mouse = 0;
 	return (main_pt2(player, data, content, line_index));
 }

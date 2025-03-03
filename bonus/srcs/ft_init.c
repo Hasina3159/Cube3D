@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:24:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/02 22:44:58 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/03 20:49:16 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,16 +78,15 @@ int	ft_get_color(char *content, char *data_name)
 	return (ft_get_color_pt2(splitted, data_name));
 }
 
-void ft_init_images(t_data *data)
+void	ft_init_images(t_data *data)
 {
 	int	i;
 
 	data->image_wall_n.img_path = NULL;
-	data->screen.img_path = NULL;
+	data->screen.img = NULL;
 	data->image_wall_s.img_path = NULL;
 	data->image_wall_e.img_path = NULL;
 	data->image_wall_w.img_path = NULL;
-	data->screen.img_path = NULL;
 	data->door.door_sprite.img_path = NULL;
 	i = 0;
 	while (i < 5)

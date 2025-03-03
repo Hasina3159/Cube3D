@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 08:38:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/02 23:00:47 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/03 20:17:54 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,13 @@ char	*if_get_error(int count, char *path, char *data_name, int *index)
 		free(path);
 		*index = -1;
 		path = NULL;
-		printf("Error!\n[%s] Doublons!\n", data_name);
+		printf("Error\n[%s] Doublons!\n", data_name);
 		return (NULL);
 	}
 	else if (count == 0)
 	{
-		printf("Error!\n[%s] N'existe pas!\n", data_name);
+		printf("Error\n[%s] N'existe pas!\n", data_name);
+		free(path);
 		return (NULL);
 	}
 	return (path);

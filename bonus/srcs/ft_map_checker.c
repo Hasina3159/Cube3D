@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 08:38:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/02 22:10:25 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/03 20:49:37 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ e_bool	ft_check_map_char_loop(int *i, int *player_count, char **map)
 			*player_count = *player_count + 1;
 		if (!ft_is_valid_char(map[*i][j], "01NSEWDB "))
 		{
-			printf("Error!\nInvalid character [%c].\n", map[*i][j]);
+			printf("Error\nInvalid character [%c].\n", map[*i][j]);
 			return (false);
 		}
 		j++;
@@ -132,7 +132,7 @@ e_bool	ft_check_map_char(char **map)
 	}
 	if (player_count != 1)
 	{
-		printf("Error!\nInvalid player count.\n");
+		printf("Error\nInvalid player count.\n");
 		return (false);
 	}
 	return (true);

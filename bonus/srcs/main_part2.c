@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 06:34:08 by fhajanol          #+#    #+#             */
-/*   Updated: 2025/03/02 23:16:16 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/03 20:48:39 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,27 @@ void	ft_init_hooks(t_data *data);
 
 e_bool	ft_load_images_pt2(t_data *data, char *content)
 {
-	if (ft_load_xpm_image(data, &data->sprite.image[1],
-			"./sprites/sonic2.xpm") == false)
+	int	index_data;
+
+	if (ft_load_xpm_image(data, &data->image_wall_n, \
+	ft_get_data(content, "NO", &index_data)) == false)
 		return (false);
-	if (ft_load_xpm_image(data, &data->sprite.image[2],
-			"./sprites/sonic3.xpm") == false)
+	free(data->image_wall_n.img_path);
+	if (ft_load_xpm_image(data, &data->image_wall_s, \
+	ft_get_data(content, "SO", &index_data)) == false)
 		return (false);
-	if (ft_load_xpm_image(data, &data->sprite.image[3],
-			"./sprites/sonic4.xpm") == false)
+	free(data->image_wall_s.img_path);
+	if (ft_load_xpm_image(data, &data->image_wall_e, \
+	ft_get_data(content, "EA", &index_data)) == false)
 		return (false);
-	if (ft_load_xpm_image(data, &data->sprite.image[4],
-			"./sprites/sonic5.xpm") == false)
+	free(data->image_wall_e.img_path);
+	if (ft_load_xpm_image(data, &data->image_wall_w, \
+	ft_get_data(content, "WE", &index_data)) == false)
 		return (false);
-	if (ft_load_xpm_image(data, &data->door.door_sprite,
-			"./sprites/door.xpm") == false)
+	free(data->image_wall_w.img_path);
+	if (ft_load_xpm_image(data, &data->sprite.image[0], \
+	ft_strdup("./sprites/sonic1.xpm")) == false)
 		return (false);
-	return (true);
 }
 
 void	init_some_data(t_data *data, char *content, char player)
@@ -56,25 +61,15 @@ void	init_some_data(t_data *data, char *content, char player)
 
 int	main_pt2(char player, t_data data, char *content, int line_index)
 {
-	data.color_ground = ft_get_color(content, "F");
-	data.color_sky = ft_get_color(content, "C");
-	ft_get_sprite_position(data.world_map, &data.sprite.pos_y,
-		&data.sprite.pos_x);
-	data.door.door_open = false;
-	data.show_mouse_enter = 0;
-	ft_init_direction(&data, player);
-	data.render = 0;
-	data.mlx = mlx_init();
+	init_some_data(&data, content, player);
 	data.show_mouse_enter = 0;
 	init_key(&data.key_data);
 	data.screen.img = NULL;
+	data.win = NULL;
 	if (ft_load_images(&data, content) == false)
 	{
 		free(content);
-		printf("--> yead\n");
 		clean_up(&data);
-		printf("--> yead2\n");
-		printf("--> yead3\n");
 		return (1);
 	}
 	free(content);

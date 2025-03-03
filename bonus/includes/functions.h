@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:50:41 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/02 22:32:50 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/03 20:54:28 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,6 @@ int		ft_get_color(char *content, char *data_name);
 e_bool	ft_check_map_char(char **map);
 e_bool	ft_is_valid_char(char c, char *s);
 void    ft_init_images(t_data *data);
+e_bool	ft_second_condition(char *pl, t_data *dt, char *cntnt, int ln_idx);
 
 #endif // !FUNCTIONS_H
