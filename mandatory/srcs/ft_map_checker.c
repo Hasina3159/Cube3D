@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 08:38:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/28 16:28:05 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/03 21:07:02 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ e_bool	ft_check_map(char **map)
 				ft_flood_fill(map, x, y, &is_ok);
 			if (is_ok == false)
 			{
-				printf("Error!\nInvalid Map\n");
+				printf("Error\nInvalid Map\n");
 				return (false);
 			}
 			x++;
@@ -110,9 +110,9 @@ e_bool	ft_check_map_char_loop(int *i, int *player_count, char **map)
 	{
 		if (ft_is_valid_char(map[*i][j], "NSEW"))
 			*player_count = *player_count + 1;
-		if (!ft_is_valid_char(map[*i][j], "01NSEW "))
+		if (ft_is_valid_char(map[*i][j], "01NSEW ") == false)
 		{
-			printf("Error!\nInvalid character [%c].\n", map[*i][j]);
+			printf("Error\nInvalid character [%c].\n", map[*i][j]);
 			return (false);
 		}
 		j++;
