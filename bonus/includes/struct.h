@@ -6,7 +6,7 @@
 /*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:47:15 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/01 10:17:20 by fhajanol         ###   ########.fr       */
+/*   Updated: 2025/03/23 11:24:27 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,13 @@ typedef struct s_sprite
 	int			draw_start;
 	int			draw_end;
 	int			screen_height;
-	e_bool		render;
+	t_bool		render;
 }				t_sprite;
 
 typedef struct s_door
 {
-	e_bool		door_hit;
-	e_bool		door_open;
+	t_bool		door_hit;
+	t_bool		door_open;
 	t_img		door_sprite;
 }				t_door;
 
@@ -148,7 +148,7 @@ typedef struct s_sprite_var
 typedef struct s_raycast_var
 {
 	t_dda		*dda;
-	e_bool		show;
+	t_bool		show;
 	int			start;
 	int			end;
 	double		ray_hit_x;

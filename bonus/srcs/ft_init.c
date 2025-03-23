@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
+/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:24:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/03 20:49:16 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/23 11:24:27 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,23 @@
 void	ft_init_direction_pt2(t_data *data, char dir);
 int		ft_get_color_pt2(char **splitted, char *data_name);
 
-e_bool	ft_is_str_num(char *str)
+t_bool	ft_check_color_lst(char **sp_color)
+{
+	if (!sp_color || ft_get_split_size(sp_color) != 3)
+	{
+		printf("Error\nInvalid color value\n");
+		return (false);
+	}
+	if (ft_atoi(sp_color[0]) > 255 || \
+		ft_atoi(sp_color[1]) > 255 || ft_atoi(sp_color[2]) > 255)
+	{
+		printf("Error\nInvalid color value\n");
+		return (false);
+	}
+	return (true);
+}
+
+t_bool	ft_is_str_num(char *str)
 {
 	int	i;
 
@@ -60,8 +76,10 @@ int	ft_get_color(char *content, char *data_name)
 	char	**splitted;
 
 	color_str = ft_get_data(content, data_name, &line_index);
+	if (color_str == NULL)
+		return (-1);
 	splitted = ft_split(color_str, ',');
-	if (ft_get_split_size(splitted) != 3)
+	if (ft_check_color_lst(splitted) == false)
 	{
 		free(color_str);
 		ft_free_split(splitted);

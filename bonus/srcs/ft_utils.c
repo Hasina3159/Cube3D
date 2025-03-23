@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
+/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 08:38:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/03 20:55:43 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/23 11:24:27 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@
 #include <math.h>
 #include <unistd.h>
 
-e_bool	ft_second_condition(char *pl, t_data *dt, char *cntnt, int ln_idx)
+t_bool	ft_second_condition(char *pl, t_data *dt, char *cntnt, int ln_idx)
 {
 	if (ft_check_map_char(dt->world_map) == false
 		|| ft_check_map(dt->world_map) == false || ln_idx == -1)
 	{
+		printf("Error\nInvalid map\n");
 		free(cntnt);
 		ft_free_split(dt->world_map);
 		return (false);
@@ -38,7 +39,7 @@ e_bool	ft_second_condition(char *pl, t_data *dt, char *cntnt, int ln_idx)
 
 size_t	ft_get_split_size(char **splitted)
 {
-	int	i;
+	size_t	i;
 
 	if (splitted == NULL)
 		return (0);
@@ -48,12 +49,12 @@ size_t	ft_get_split_size(char **splitted)
 	return (i);
 }
 
-void	ft_free_split(char **splitted)
+int	ft_free_split(char **splitted)
 {
 	int	i;
 
 	if (splitted == NULL)
-		return ;
+		return (1);
 	i = 0;
 	while (splitted[i])
 	{
@@ -61,7 +62,7 @@ void	ft_free_split(char **splitted)
 		i++;
 	}
 	free(splitted);
-	return ;
+	return (1);
 }
 
 double	ft_dist_calculator(double x1, double y1, double x2, double y2)

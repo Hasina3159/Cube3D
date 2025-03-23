@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser_part2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
+/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 08:08:50 by fhajanol          #+#    #+#             */
-/*   Updated: 2025/03/01 11:57:38 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/23 08:49:46 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	**ft_get_map(char *content, int line_index)
 	i = 0;
 	count = 0;
 	line_index++;
-	while (i < ft_strlen(content) && count < line_index)
+	while (i < (int)ft_strlen(content) && count < line_index)
 	{
 		if (content[i] == '\n')
 			count++;
@@ -68,8 +68,8 @@ int	ft_get_longest(char *content, int line_index)
 	i = 0;
 	while (map[i])
 	{
-		if (ft_strlen(map[i]) > longest)
-			longest = ft_strlen(map[i]);
+		if ((int)ft_strlen(map[i]) > longest)
+			longest = (int)ft_strlen(map[i]);
 		i++;
 	}
 	ft_free_split(map);
@@ -83,7 +83,7 @@ int	pp(char *to_split, int *count, char *data_name, char **path)
 	split_path = ft_split(to_split, ' ');
 	if (split_path[0] == NULL)
 		return (1);
-	if (ft_strncmp(data_name, split_path[0], ft_strlen(data_name)) == 0
+	if (ft_strncmp(data_name, split_path[0], (int)ft_strlen(data_name)) == 0
 		&& ft_get_split_size(split_path) == 2)
 	{
 		(*count)++;

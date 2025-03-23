@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_image.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
+/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:10:19 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/28 12:32:42 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/23 11:23:28 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 #include "../includes/functions.h"
 #include "../includes/struct.h"
 
-e_bool	ft_check_file_validity(char *path)
+t_bool	ft_check_file_validity(char *path)
 {
 	int	fd;
 
 	if (path == NULL)
-		printf("Error\nNULL path!");
+		printf("Error\nNULL path!\n");
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 	{
@@ -36,20 +36,20 @@ int	ft_load_xpm_image(t_data *data, t_img *image, char *path)
 	if (ft_check_file_validity(path) == false)
 	{
 		image->img = NULL;
+		image->img_path = NULL;
 		image->pixels = NULL;
 		return (0);
 	}
 	image->img_path = path;
-	image->img = mlx_xpm_file_to_image(data->mlx, image->img_path,
-			&image->height, &image->width);
+	image->img = mlx_xpm_file_to_image(data->mlx, \
+	image->img_path, &image->height, &image->width);
 	if (image->img == NULL)
 	{
-		free(image->img_path);
 		image->img_path = NULL;
 		return (0);
 	}
-	image->pixels = (int *)mlx_get_data_addr(image->img, &image->bpp,
-			&image->size_line, &image->endian);
+	image->pixels = (int *)mlx_get_data_addr(image->img, \
+	&image->bpp, &image->size_line, &image->endian);
 	return (1);
 }
 

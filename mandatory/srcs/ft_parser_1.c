@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
+/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:26:32 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/03 21:07:12 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/23 11:23:28 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*ft_get_content(char *path)
 	return (content);
 }
 
-e_bool	ft_check_data(int count, char *path, int *index, char *data_name)
+t_bool	ft_check_data(int count, char *path, int *index, char *data_name)
 {
 	if (count > 1)
 	{

@@ -6,7 +6,7 @@
 /*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 09:26:43 by fhajanol          #+#    #+#             */
-/*   Updated: 2025/03/01 09:28:08 by fhajanol         ###   ########.fr       */
+/*   Updated: 2025/03/23 08:51:08 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 void	set_side(t_data *data, t_raycast_var *var)
 {
+	(void)data;
 	if (var->dda->side_dist_x < var->dda->side_dist_y)
 	{
 		var->dda->side_dist_x += var->dda->delta_dist_x;

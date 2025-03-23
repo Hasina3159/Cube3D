@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_renderer_part2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 08:58:26 by fhajanol          #+#    #+#             */
-/*   Updated: 2025/03/01 09:02:49 by fhajanol         ###   ########.fr       */
+/*   Updated: 2025/03/08 12:19:45 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

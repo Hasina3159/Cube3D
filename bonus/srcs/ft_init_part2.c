@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_part2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
+/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 07:55:50 by fhajanol          #+#    #+#             */
-/*   Updated: 2025/03/02 21:45:59 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/23 08:47:52 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ int	ft_get_color_pt2(char **splitted, char *data_name)
 	color = (ft_atoi(splitted[0]) << 16) | \
 	(ft_atoi(splitted[1]) << 8) | ft_atoi(splitted[2]);
 	ft_free_split(splitted);
+	(void)data_name;
 	return (color);
 }

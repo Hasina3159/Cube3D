@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 09:15:49 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/02 22:00:41 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/08 12:19:19 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	ft_gettime(void)
 	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
-	printf("time : %d\n", tv.tv_usec / 200000);
 	return (tv.tv_usec / 200000);
 }
 

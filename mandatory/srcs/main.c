@@ -6,7 +6,7 @@
 /*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:09:36 by fhajanol          #+#    #+#             */
-/*   Updated: 2025/03/01 10:46:09 by fhajanol         ###   ########.fr       */
+/*   Updated: 2025/03/23 08:46:33 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,8 @@
 void	ft_init_hooks(t_data *data);
 char	*ft_load_images(t_data *data, char *content);
 
-int	main_pt1(int argc, char **argv, t_data *data, int *line_index)
+int	main_pt1(char **argv, t_data *data, int *line_index)
 {
-	if (argc != 2)
-	{
-		printf("Error\nArg number must be two!");
-		return (0);
-	}
 	ft_init_struct(data);
 	data->content = ft_get_content(argv[1]);
 	if (data->content == NULL)
@@ -65,7 +60,7 @@ int	main_pt2(t_data *data)
 	data->color_sky = ft_get_color(data->content, "C");
 	if (data->color_ground < 0)
 	{
-		printf("Error\nInvalid color value");
+		printf("Error\nInvalid color value\n");
 		free(data->content);
 		ft_free_split(data->world_map);
 		return (0);
@@ -80,24 +75,25 @@ int	main(int argc, char **argv)
 	char	*imgs;
 	int		line_index;
 
-	if (!main_pt1(argc, argv, &data, &line_index) || !main_pt2(&data))
+	if (!ft_check_filename(argc, argv)
+		|| !main_pt1(argv, &data, &line_index) || !main_pt2(&data))
 		return (0);
 	data.render = 0;
 	data.mlx = mlx_init();
 	init_key(&data.key_data);
 	data.screen.img = NULL;
 	imgs = ft_load_images(&data, data.content);
+	data.win = mlx_new_window(data.mlx, SCREENWIDTH, SCREENHEIGHT,
+			"Cube3D Petera");
+	data.screen.img = mlx_new_image(data.mlx, SCREENWIDTH, SCREENHEIGHT);
+	data.screen.pixels = (int *)mlx_get_data_addr(data.screen.img,
+			&data.screen.bpp, &data.screen.size_line, &data.screen.endian);
 	if (imgs != NULL)
 	{
 		free(imgs);
 		clean_up(&data);
 		return (1);
 	}
-	data.win = mlx_new_window(data.mlx, SCREENWIDTH, SCREENHEIGHT,
-			"Cube3D Petera");
-	data.screen.img = mlx_new_image(data.mlx, SCREENWIDTH, SCREENHEIGHT);
-	data.screen.pixels = (int *)mlx_get_data_addr(data.screen.img,
-			&data.screen.bpp, &data.screen.size_line, &data.screen.endian);
 	ft_init_hooks(&data);
 	return (0);
 }

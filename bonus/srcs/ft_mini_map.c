@@ -6,7 +6,7 @@
 /*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 12:08:23 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/01 08:04:23 by fhajanol         ###   ########.fr       */
+/*   Updated: 2025/03/23 10:47:54 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,31 @@ void	ft_draw_mini_map(t_data *data)
 	}
 	ft_draw_square(data, (int)data->pos_y * SQUARE_SIZE + (int)data->pos_y,
 		(int)data->pos_x * SQUARE_SIZE + (int)data->pos_x, 0x55FFFF00);
+}
+
+char	**ft_clone_map(char **map)
+{
+	int		i;
+	int		j;
+	char	**new_map;
+
+	new_map = (char **)malloc(sizeof(char *) * (ft_get_split_size(map) + 1));
+	if (!new_map)
+		return (NULL);
+	i = -1;
+	while (map[++i])
+		new_map[i] = ft_strdup(map[i]);
+	new_map[i] = NULL;
+	i = -1;
+	while (map[++i])
+	{
+		j = 0;
+		while (new_map[i][j])
+		{
+			if (new_map[i][j] != '1' && new_map[i][j] != ' ')
+				new_map[i][j] = '0';
+			j++;
+		}
+	}
+	return (new_map);
 }

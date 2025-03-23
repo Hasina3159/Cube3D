@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_part2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
+/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 06:34:08 by fhajanol          #+#    #+#             */
-/*   Updated: 2025/03/03 20:48:39 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/23 11:24:27 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-e_bool	ft_load_images(t_data *data, char *content);
+t_bool	ft_load_images(t_data *data, char *content);
 void	ft_init_hooks(t_data *data);
 
-e_bool	ft_load_images_pt2(t_data *data, char *content)
+t_bool	ft_load_images_pt2(t_data *data, char *content)
 {
 	int	index_data;
 
+	index_data = 0;
 	if (ft_load_xpm_image(data, &data->image_wall_n, \
 	ft_get_data(content, "NO", &index_data)) == false)
 		return (false);
@@ -41,12 +42,15 @@ e_bool	ft_load_images_pt2(t_data *data, char *content)
 		return (false);
 	free(data->image_wall_w.img_path);
 	if (ft_load_xpm_image(data, &data->sprite.image[0], \
-	ft_strdup("./sprites/sonic1.xpm")) == false)
+	ft_strdup("./bonus/sprites/sonic1.xpm")) == false)
 		return (false);
+	return (true);
 }
 
 void	init_some_data(t_data *data, char *content, char player)
 {
+	data->sprite.pos_x = 0;
+	data->sprite.pos_y = 0;
 	data->color_ground = ft_get_color(content, "F");
 	data->color_sky = ft_get_color(content, "C");
 	ft_get_sprite_position(data->world_map, &data->sprite.pos_y,
@@ -59,26 +63,30 @@ void	init_some_data(t_data *data, char *content, char player)
 	data->show_mouse_enter = 0;
 }
 
-int	main_pt2(char player, t_data data, char *content, int line_index)
+int	main_pt2(char player, t_data *data, char **content)
 {
-	init_some_data(&data, content, player);
-	data.show_mouse_enter = 0;
-	init_key(&data.key_data);
-	data.screen.img = NULL;
-	data.win = NULL;
-	if (ft_load_images(&data, content) == false)
+	data->screen.bpp = 0;
+	data->screen.size_line = 0;
+	data->screen.endian = 0;
+	init_some_data(data, *content, player);
+	data->show_mouse_enter = 0;
+	init_key(&data->key_data);
+	data->screen.img = NULL;
+	data->win = NULL;
+	if (data->color_ground == -1 || data->color_sky == -1 \
+		|| ft_load_images(data, *content) == false)
 	{
-		free(content);
-		clean_up(&data);
+		free(*content);
+		clean_up(data);
 		return (1);
 	}
-	free(content);
-	data.win = mlx_new_window(data.mlx, SCREENWIDTH, SCREENHEIGHT,
+	free(*content);
+	data->win = mlx_new_window(data->mlx, SCREENWIDTH, SCREENHEIGHT,
 			"Cube3D Petera");
-	data.screen.img = mlx_new_image(data.mlx, SCREENWIDTH, SCREENHEIGHT);
-	data.screen.pixels = (int *)mlx_get_data_addr(data.screen.img,
-			&data.screen.bpp, &data.screen.size_line, &data.screen.endian);
-	init_fps(&data.fps);
-	ft_init_hooks(&data);
+	data->screen.img = mlx_new_image(data->mlx, SCREENWIDTH, SCREENHEIGHT);
+	data->screen.pixels = (int *)mlx_get_data_addr(data->screen.img,
+			&data->screen.bpp, &data->screen.size_line, &data->screen.endian);
+	init_fps(&data->fps);
+	ft_init_hooks(data);
 	return (0);
 }

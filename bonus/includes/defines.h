@@ -6,7 +6,7 @@
 /*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:45:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/01 10:17:15 by fhajanol         ###   ########.fr       */
+/*   Updated: 2025/03/23 11:24:27 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ typedef enum enum_bool
 {
 	false,
 	true
-}	e_bool;
+}	t_bool;
 
 #endif // ! DEFINES_H

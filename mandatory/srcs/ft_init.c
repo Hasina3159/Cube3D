@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
+/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:24:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/28 16:00:39 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/23 11:23:28 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,14 @@ void	ft_init_struct(t_data *data)
 	data->image_wall_s.img = NULL;
 	data->image_wall_e.img = NULL;
 	data->image_wall_w.img = NULL;
+	data->image_wall_n.img_path = NULL;
+	data->image_wall_s.img_path = NULL;
+	data->image_wall_e.img_path = NULL;
+	data->image_wall_w.img_path = NULL;
 	data->screen.img = NULL;
 }
 
-e_bool	ft_is_str_num(char *str)
+t_bool	ft_is_str_num(char *str)
 {
 	int	i;
 
@@ -39,7 +43,7 @@ e_bool	ft_is_str_num(char *str)
 	return (true);
 }
 
-e_bool	ft_init_direction_0(t_data *data, char dir)
+t_bool	ft_init_direction_0(t_data *data, char dir)
 {
 	if (dir == 'N')
 	{

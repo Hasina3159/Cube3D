@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_move.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
+/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:03:12 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/28 16:11:40 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/23 11:18:16 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	move_forward(t_data *data)
 	content_y = data->world_map[(int)(data->pos_x)][(int)(data->pos_y
 			+ data->dir_y * MOVE_SPEED * MOVE_SPEED_FACTOR)];
 	data->render = 1;
-	if (content_x == 'o')
+	if (content_x == '0')
 		data->pos_x += data->dir_x * MOVE_SPEED;
-	if (content_y == 'o')
+	if (content_y == '0')
 		data->pos_y += data->dir_y * MOVE_SPEED;
 }
 
@@ -40,9 +40,9 @@ void	move_backward(t_data *data)
 	content_y = data->world_map[(int)(data->pos_x)][(int)(data->pos_y
 			- data->dir_y * MOVE_SPEED * MOVE_SPEED_FACTOR)];
 	data->render = 1;
-	if (content_x == 'o')
+	if (content_x == '0')
 		data->pos_x -= data->dir_x * MOVE_SPEED;
-	if (content_y == 'o')
+	if (content_y == '0')
 		data->pos_y -= data->dir_y * MOVE_SPEED;
 }
 
@@ -55,10 +55,10 @@ void	move_left(t_data *data)
 	permouse_y_dir = data->dir_x;
 	data->render = 1;
 	if (data->world_map[(int)(data->pos_x + permouse_x_dir
-			* MOVE_SPEED * MOVE_SPEED_FACTOR)][(int)(data->pos_y)] == 'o')
+			* MOVE_SPEED * MOVE_SPEED_FACTOR)][(int)(data->pos_y)] == '0')
 		data->pos_x += permouse_x_dir * MOVE_SPEED;
 	if (data->world_map[(int)(data->pos_x)][(int)(data->pos_y + permouse_y_dir
-			* MOVE_SPEED * MOVE_SPEED_FACTOR)] == 'o')
+			* MOVE_SPEED * MOVE_SPEED_FACTOR)] == '0')
 		data->pos_y += permouse_y_dir * MOVE_SPEED;
 }
 
@@ -71,9 +71,9 @@ void	move_right(t_data *data)
 	permouse_y_dir = -data->dir_x;
 	data->render = 1;
 	if (data->world_map[(int)(data->pos_x + permouse_x_dir
-			* MOVE_SPEED * MOVE_SPEED_FACTOR)][(int)(data->pos_y)] == 'o')
+			* MOVE_SPEED * MOVE_SPEED_FACTOR)][(int)(data->pos_y)] == '0')
 		data->pos_x += permouse_x_dir * MOVE_SPEED;
 	if (data->world_map[(int)(data->pos_x)][(int)(data->pos_y + permouse_y_dir
-			* MOVE_SPEED * MOVE_SPEED_FACTOR)] == 'o')
+			* MOVE_SPEED * MOVE_SPEED_FACTOR)] == '0')
 		data->pos_y += permouse_y_dir * MOVE_SPEED;
 }

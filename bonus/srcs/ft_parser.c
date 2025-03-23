@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
+/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 08:38:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/03 20:17:54 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/23 09:07:45 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	**ft_get_true_map(char *content, int line_index)
 	count = 0;
 	line_index++;
 	size = ft_get_longest(content, line_index);
-	while (i < ft_strlen(content) && count < line_index)
+	while (i < (int)ft_strlen(content) && count < line_index)
 	{
 		if (content[i] == '\n')
 			count++;
@@ -110,17 +110,15 @@ int	ft_check_if_all_data_exists(char *content)
 	if (all_data == NULL)
 		return (0);
 	i = -1;
+	index = 0;
 	max_index = INT_MIN;
 	while (all_data[++i])
 	{
 		data = ft_get_data(content, all_data[i], &index);
 		if (index > max_index)
 			max_index = index;
-		if (data == NULL)
-		{
-			ft_free_split(all_data);
+		if (data == NULL && ft_free_split(all_data))
 			return (-1);
-		}
 		free(data);
 	}
 	ft_free_split(all_data);

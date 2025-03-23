@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sprite.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:58:53 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/01 08:45:22 by fhajanol         ###   ########.fr       */
+/*   Updated: 2025/03/08 12:19:58 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	draw_sprite_inner_loop(t_sprite_var *var, t_data *data)
 			{
 				var->color = var->sprite->pixels[(int)(var->new_y
 						* var->sprite->width + var->tex_x)];
-				if (var->color & 0xFF000000 != 0x000000)
+				if (var->color & (0xFF000000 != 0x000000))
 				{
 					var->screen->pixels[var->y * SCREENWIDTH
 						+ var->stripe] = var->color;

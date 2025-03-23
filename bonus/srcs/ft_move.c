@@ -6,7 +6,7 @@
 /*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:03:12 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/01 08:07:48 by fhajanol         ###   ########.fr       */
+/*   Updated: 2025/03/23 11:24:27 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 #include "../includes/struct.h"
 #include <stdbool.h>
 
-e_bool	ft_out_of_map(char **map, int x, int y)
+t_bool	ft_out_of_map(char **map, int x, int y)
 {
-	if (x <= 0 || y <= 0 || x >= ft_get_split_size(map) - 1
-		|| y >= ft_strlen(map[x]) - 1)
+	if (x <= 0 || y <= 0 || x >= (int)ft_get_split_size(map) - 1
+		|| y >= (int)ft_strlen(map[x]) - 1)
 		return (false);
 	return (true);
 }
@@ -38,13 +38,13 @@ void	move_forward(t_data *data)
 	map_y = (int)new_pos_y;
 	data->render = 1;
 	if (ft_out_of_map(data->world_map, map_x, (int)data->pos_y) \
-	&& (data->world_map[map_x][(int)data->pos_y] == 'o'
+	&& (data->world_map[map_x][(int)data->pos_y] == '0'
 		|| (data->door.door_open
 			&& data->world_map[map_x][(int)data->pos_y] == 'D')))
 		data->pos_x = (new_pos_x - data->pos_x) / MOVE_SPEED_FACTOR
 			+ data->pos_x;
 	if (ft_out_of_map(data->world_map, (int)data->pos_x, map_y) \
-	&& (data->world_map[(int)data->pos_x][map_y] == 'o'
+	&& (data->world_map[(int)data->pos_x][map_y] == '0'
 		|| (data->door.door_open
 			&& data->world_map[(int)data->pos_x][map_y] == 'D')))
 		data->pos_y = (new_pos_y - data->pos_y) / MOVE_SPEED_FACTOR
@@ -66,13 +66,13 @@ void	move_backward(t_data *data)
 	map_y = (int)new_pos_y;
 	data->render = 1;
 	if (ft_out_of_map(data->world_map, map_x, (int)data->pos_y) \
-	&& (data->world_map[map_x][(int)data->pos_y] == 'o'
+	&& (data->world_map[map_x][(int)data->pos_y] == '0'
 		|| (data->door.door_open
 			&& data->world_map[map_x][(int)data->pos_y] == 'D')))
 		data->pos_x = (new_pos_x - data->pos_x) / MOVE_SPEED_FACTOR
 			+ data->pos_x;
 	if (ft_out_of_map(data->world_map, (int)data->pos_x, map_y) \
-	&& (data->world_map[(int)data->pos_x][map_y] == 'o'
+	&& (data->world_map[(int)data->pos_x][map_y] == '0'
 		|| (data->door.door_open
 			&& data->world_map[(int)data->pos_x][map_y] == 'D')))
 		data->pos_y = (new_pos_y - data->pos_y) / MOVE_SPEED_FACTOR
@@ -94,11 +94,11 @@ void	move_left(t_data *data)
 	map_y = (int)new_pos_y;
 	data->render = 1;
 	if (ft_out_of_map(data->world_map, map_x, (int)data->pos_y)
-		&& data->world_map[map_x][(int)data->pos_y] == 'o')
+		&& data->world_map[map_x][(int)data->pos_y] == '0')
 		data->pos_x = (new_pos_x - data->pos_x) / MOVE_SPEED_FACTOR
 			+ data->pos_x;
 	if (ft_out_of_map(data->world_map, (int)data->pos_x, map_y)
-		&& data->world_map[(int)data->pos_x][map_y] == 'o')
+		&& data->world_map[(int)data->pos_x][map_y] == '0')
 		data->pos_y = (new_pos_y - data->pos_y) / MOVE_SPEED_FACTOR
 			+ data->pos_y;
 }
@@ -118,11 +118,11 @@ void	move_right(t_data *data)
 	map_y = (int)new_pos_y;
 	data->render = 1;
 	if (ft_out_of_map(data->world_map, map_x, (int)data->pos_y)
-		&& data->world_map[map_x][(int)data->pos_y] == 'o')
+		&& data->world_map[map_x][(int)data->pos_y] == '0')
 		data->pos_x = (new_pos_x - data->pos_x) / MOVE_SPEED_FACTOR
 			+ data->pos_x;
 	if (ft_out_of_map(data->world_map, (int)data->pos_x, map_y)
-		&& data->world_map[(int)data->pos_x][map_y] == 'o')
+		&& data->world_map[(int)data->pos_x][map_y] == '0')
 		data->pos_y = (new_pos_y - data->pos_y) / MOVE_SPEED_FACTOR
 			+ data->pos_y;
 }

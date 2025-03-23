@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
+/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 08:38:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/28 16:29:06 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/23 09:15:41 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,15 @@ int	ft_check_if_all_data_exists(char *content)
 	if (all_data == NULL)
 		return (0);
 	i = 0;
+	index = 0;
 	max_index = INT_MIN;
 	while (all_data[i])
 	{
 		data = ft_get_data(content, all_data[i++], &index);
 		if (index > max_index)
 			max_index = index;
-		if (data == NULL)
-		{
-			ft_free_split(all_data);
+		if (data == NULL && ft_free_split(all_data))
 			return (0);
-		}
 		free(data);
 	}
 	ft_free_split(all_data);
@@ -52,7 +50,7 @@ char	**ft_get_map(char *content, int line_index)
 	i = 0;
 	count = 0;
 	line_index++;
-	while (i < ft_strlen(content) && count < line_index)
+	while (i < (int)ft_strlen(content) && count < line_index)
 	{
 		if (content[i] == '\n')
 			count++;
@@ -78,8 +76,8 @@ int	ft_get_longest(char *content, int line_index)
 	i = 0;
 	while (map[i])
 	{
-		if (ft_strlen(map[i]) > longest)
-			longest = ft_strlen(map[i]);
+		if ((int)ft_strlen(map[i]) > longest)
+			longest = (int)ft_strlen(map[i]);
 		i++;
 	}
 	ft_free_split(map);
@@ -97,7 +95,7 @@ char	**ft_get_true_map(char *content, int line_index)
 	count = 0;
 	line_index++;
 	size = ft_get_longest(content, line_index);
-	while (i < ft_strlen(content) && count < line_index)
+	while (i < (int)ft_strlen(content) && count < line_index)
 	{
 		if (content[i] == '\n')
 			count++;

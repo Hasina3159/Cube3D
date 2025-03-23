@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_clean.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
+/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:49:27 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/02/20 17:43:41 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/23 11:02:00 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../includes/functions.h"
 #include "../includes/struct.h"
 
-void	clean_up(t_data *data)
+int	clean_up(t_data *data)
 {
 	if (data->screen.img)
 		mlx_destroy_image(data->mlx, data->screen.img);
@@ -38,4 +38,32 @@ void	clean_up(t_data *data)
 	free(data->content);
 	ft_free_split(data->world_map);
 	exit(0);
+	return (0);
+}
+
+char	**ft_clone_map(char **map)
+{
+	int		i;
+	int		j;
+	char	**new_map;
+
+	new_map = (char **)malloc(sizeof(char *) * (ft_get_split_size(map) + 1));
+	if (!new_map)
+		return (NULL);
+	i = -1;
+	while (map[++i])
+		new_map[i] = ft_strdup(map[i]);
+	new_map[i] = NULL;
+	i = -1;
+	while (map[++i])
+	{
+		j = 0;
+		while (new_map[i][j])
+		{
+			if (new_map[i][j] != '1' && new_map[i][j] != ' ')
+				new_map[i][j] = '0';
+			j++;
+		}
+	}
+	return (new_map);
 }

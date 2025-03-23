@@ -6,7 +6,7 @@
 /*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 10:52:56 by fhajanol          #+#    #+#             */
-/*   Updated: 2025/03/01 11:03:07 by fhajanol         ###   ########.fr       */
+/*   Updated: 2025/03/23 11:23:28 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	rc_part3(t_data *data, t_dda *dda)
 void	perform_raycasting(t_data *data)
 {
 	t_dda	*dda;
-	e_bool	show;
+	t_bool	show;
 	int		start;
 	int		end;
 

@@ -6,7 +6,7 @@
 /*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:47:25 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/01 09:28:48 by fhajanol         ###   ########.fr       */
+/*   Updated: 2025/03/23 10:49:26 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,9 @@ int	rc_inner_pt4(t_data *data, t_raycast_var *var)
 {
 	if (data->world_map[var->dda->map_x][var->dda->map_y] == '1'
 		|| var->dda->map_x <= 0 || var->dda->map_y <= 0
-		|| var->dda->map_x >= ft_get_split_size(data->world_map) - 1
-		|| var->dda->map_y >= ft_strlen(data->world_map[var->dda->map_x]) - 1)
+		|| var->dda->map_x >= (int)ft_get_split_size(data->world_map) - 1
+		|| var->dda->map_y >= (\
+			int)ft_strlen(data->world_map[var->dda->map_x]) - 1)
 	{
 		var->dda->hit = 1;
 		return (0);

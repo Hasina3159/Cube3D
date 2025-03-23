@@ -1,45 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sprite_part2.c                                  :+:      :+:    :+:   */
+/*   ft_file_checker.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/01 08:26:52 by fhajanol          #+#    #+#             */
+/*   Created: 2025/03/23 08:19:24 by fhajanol          #+#    #+#             */
 /*   Updated: 2025/03/23 11:24:27 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/defines.h"
 #include "../includes/functions.h"
-#include <fcntl.h>
-#include <math.h>
-#include <stdio.h>
-#include <unistd.h>
+#include "../includes/struct.h"
 
-t_bool	ft_get_sprite_position(char **map, double *px, double *py)
+t_bool	ft_check_filename(int argc, char **argv)
 {
-	int	x;
-	int	y;
+	size_t	len;
 
-	if (map == NULL)
-		return (false);
-	y = 0;
-	while (map[y])
+	if (argc != 2)
 	{
-		x = 0;
-		while (map[y][x])
-		{
-			if (map[y][x] == 'B')
-			{
-				map[y][x] = '0';
-				*px = (double)x;
-				*py = (double)y;
-				return (true);
-			}
-			x++;
-		}
-		y++;
+		printf("Error\nArg number must be two!\n");
+		return (0);
 	}
-	return (false);
+	len = ft_strlen(argv[1]);
+	if (len < 5 || !ft_strncmp((argv[1] + (len - 5)), "/.cub", 5)
+		|| ft_strncmp((argv[1] + (len - 4)), ".cub", 5))
+	{
+		printf("Error\nInvalid filename\n");
+		return (false);
+	}
+	return (true);
 }

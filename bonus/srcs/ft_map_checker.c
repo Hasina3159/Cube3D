@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_checker.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
+/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 08:38:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/03 20:49:37 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/23 11:24:27 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 #include <stdio.h>
 #include <unistd.h>
 
-void	ft_flood_fill(char **map, int x, int y, e_bool *ret)
+void	ft_flood_fill(char **map, int x, int y, t_bool *ret)
 {
-	if (map == NULL || (x < 1 || y < 1) || y >= ft_get_split_size(map) - 1
+	if (map == NULL || (x < 1 || y < 1) || y >= (int)ft_get_split_size(map) - 1
 		|| *ret == false)
 	{
 		*ret = false;
@@ -45,27 +45,31 @@ void	ft_flood_fill(char **map, int x, int y, e_bool *ret)
 		ft_flood_fill(map, x, y - 1, ret);
 }
 
-e_bool	ft_check_map(char **map)
+t_bool	ft_check_map(char **map)
 {
-	e_bool	is_ok;
+	t_bool	is_ok;
 	int		x;
 	int		y;
+	char	**new_map;
 
+	new_map = NULL;
+	new_map = ft_clone_map(map);
 	is_ok = true;
-	if (map == NULL)
+	if (map == NULL || new_map == NULL)
 		return (false);
 	y = 0;
-	while (map[y] && is_ok == true)
+	while (new_map[y] && is_ok == true)
 	{
 		x = 0;
-		while (map[y][x] && is_ok == true)
+		while (new_map[y][x] && is_ok == true)
 		{
-			if (map[y][x] == '0')
-				ft_flood_fill(map, x, y, &is_ok);
+			if (new_map[y][x] == '0')
+				ft_flood_fill(new_map, x, y, &is_ok);
 			x++;
 		}
 		y++;
 	}
+	ft_free_split(new_map);
 	return (is_ok);
 }
 
@@ -87,9 +91,9 @@ char	ft_get_player_position(char **map, double *px, double *py)
 				|| map[y][x] == 'E')
 			{
 				c = map[y][x];
-				map[y][x] = 'o';
-				*px = (double)x;
-				*py = (double)y;
+				map[y][x] = '0';
+				*px = (double)x + 0.5;
+				*py = (double)y + 0.5;
 				return (c);
 			}
 			x++;
@@ -98,7 +102,7 @@ char	ft_get_player_position(char **map, double *px, double *py)
 	return (0);
 }
 
-e_bool	ft_check_map_char_loop(int *i, int *player_count, char **map)
+t_bool	ft_check_map_char_loop(int *i, int *player_count, char **map)
 {
 	int	j;
 
@@ -118,7 +122,7 @@ e_bool	ft_check_map_char_loop(int *i, int *player_count, char **map)
 	return (true);
 }
 
-e_bool	ft_check_map_char(char **map)
+t_bool	ft_check_map_char(char **map)
 {
 	int	i;
 	int	player_count;

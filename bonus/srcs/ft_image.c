@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_image.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
+/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:10:19 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/03 20:08:55 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/23 11:24:27 by fhajanol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 #include "../includes/functions.h"
 #include "../includes/struct.h"
 
-e_bool	ft_check_file_validity(char *path)
+t_bool	ft_check_file_validity(char *path)
 {
 	int	fd;
 
 	if (path == NULL)
-		printf("Error\nNULL path!");
+		printf("Error\nNULL path!\n");
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 	{
@@ -39,7 +39,6 @@ int	ft_load_xpm_image(t_data *data, t_img *image, char *path)
 		image->img_path = NULL;
 		image->pixels = NULL;
 		free(path);
-		printf("INVALID FILE\n");
 		return (0);
 	}
 	image->img_path = path;
