@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:24:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/23 11:24:27 by fhajanol         ###   ########.fr       */
+/*   Updated: 2025/03/30 11:38:28 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,10 @@ int		ft_get_color_pt2(char **splitted, char *data_name);
 t_bool	ft_check_color_lst(char **sp_color)
 {
 	if (!sp_color || ft_get_split_size(sp_color) != 3)
-	{
-		printf("Error\nInvalid color value\n");
 		return (false);
-	}
 	if (ft_atoi(sp_color[0]) > 255 || \
 		ft_atoi(sp_color[1]) > 255 || ft_atoi(sp_color[2]) > 255)
-	{
-		printf("Error\nInvalid color value\n");
 		return (false);
-	}
 	return (true);
 }
 

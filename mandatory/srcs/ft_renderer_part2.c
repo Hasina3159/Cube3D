@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_renderer_part2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 10:52:56 by fhajanol          #+#    #+#             */
-/*   Updated: 2025/03/23 11:23:28 by fhajanol         ###   ########.fr       */
+/*   Updated: 2025/03/30 11:05:29 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,17 +102,11 @@ void	rc_part3(t_data *data, t_dda *dda)
 	data->z_dist[dda->x] = dda->dist_ortho_wall;
 }
 
-void	perform_raycasting(t_data *data)
+int	perform_raycasting(t_data *data)
 {
 	t_dda	*dda;
-	t_bool	show;
-	int		start;
-	int		end;
 
 	dda = &data->dda;
-	show = false;
-	start = -1;
-	end = -1;
 	dda->x = 0;
 	dda->old_map_x = (int)data->pos_x;
 	dda->old_map_y = (int)data->pos_y;
@@ -127,4 +121,5 @@ void	perform_raycasting(t_data *data)
 		dda->x++;
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->screen.img, 0, 0);
+	return (0);
 }

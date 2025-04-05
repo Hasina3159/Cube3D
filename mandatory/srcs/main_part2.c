@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 10:34:28 by fhajanol          #+#    #+#             */
-/*   Updated: 2025/03/08 12:23:27 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/03/30 11:06:46 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_init_hooks(t_data *data)
 {
 	mlx_hook(data->win, 17, 1L << 17, clean_up, (void *)data);
 	mlx_hook(data->win, 2, 1L << 0, handle_keypress, (void *)data);
-	mlx_loop_hook(data->mlx, (int (*)(void *))perform_raycasting, (void *)data);
+	mlx_loop_hook(data->mlx, perform_raycasting, (void *)data);
 	mlx_hook(data->win, 3, 1L << 1, handle_keyrelease, (void *)data);
 	perform_raycasting(data);
 	mlx_loop(data->mlx);

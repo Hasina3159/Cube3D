@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 08:38:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/23 09:15:41 by fhajanol         ###   ########.fr       */
+/*   Updated: 2025/03/30 10:59:12 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,10 @@ char	**ft_get_true_map(char *content, int line_index)
 	int		i;
 	int		count;
 	char	**map;
-	int		size;
 
 	i = 0;
 	count = 0;
 	line_index++;
-	size = ft_get_longest(content, line_index);
 	while (i < (int)ft_strlen(content) && count < line_index)
 	{
 		if (content[i] == '\n')

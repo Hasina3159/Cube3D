@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_file_checker.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 08:19:24 by fhajanol          #+#    #+#             */
-/*   Updated: 2025/03/23 11:24:27 by fhajanol         ###   ########.fr       */
+/*   Updated: 2025/03/30 10:42:00 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

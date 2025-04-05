@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_clean.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:49:27 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/23 11:02:00 by fhajanol         ###   ########.fr       */
+/*   Updated: 2025/03/30 11:37:09 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,14 @@ char	**ft_clone_map(char **map)
 		}
 	}
 	return (new_map);
+}
+
+t_bool	ft_check_color_lst(char **sp_color)
+{
+	if (!sp_color || ft_get_split_size(sp_color) != 3)
+		return (false);
+	if (ft_atoi(sp_color[0]) > 255 || \
+		ft_atoi(sp_color[1]) > 255 || ft_atoi(sp_color[2]) > 255)
+		return (false);
+	return (true);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_part2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 06:34:08 by fhajanol          #+#    #+#             */
-/*   Updated: 2025/03/23 11:24:27 by fhajanol         ###   ########.fr       */
+/*   Updated: 2025/04/04 14:25:30 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,22 @@ t_bool	ft_load_images_pt2(t_data *data, char *content)
 	return (true);
 }
 
-void	init_some_data(t_data *data, char *content, char player)
+int	init_some_data(t_data *data, char *content, char player)
 {
 	data->sprite.pos_x = 0;
 	data->sprite.pos_y = 0;
 	data->color_ground = ft_get_color(content, "F");
+	if (data->color_ground == -1)
+	{
+		printf("Error\nInvalid color value\n");
+		return (0);
+	}
 	data->color_sky = ft_get_color(content, "C");
+	if (data->color_sky == -1)
+	{
+		printf("Error\nInvalid color value\n");
+		return (0);
+	}
 	ft_get_sprite_position(data->world_map, &data->sprite.pos_y,
 		&data->sprite.pos_x);
 	data->door.door_open = false;
@@ -61,19 +71,19 @@ void	init_some_data(t_data *data, char *content, char player)
 	data->render = 0;
 	data->mlx = mlx_init();
 	data->show_mouse_enter = 0;
+	data->screen.bpp = 0;
+	data->screen.size_line = 0;
+	return (1);
 }
 
 int	main_pt2(char player, t_data *data, char **content)
 {
-	data->screen.bpp = 0;
-	data->screen.size_line = 0;
 	data->screen.endian = 0;
-	init_some_data(data, *content, player);
 	data->show_mouse_enter = 0;
 	init_key(&data->key_data);
 	data->screen.img = NULL;
 	data->win = NULL;
-	if (data->color_ground == -1 || data->color_sky == -1 \
+	if (init_some_data(data, *content, player) == 0 \
 		|| ft_load_images(data, *content) == false)
 	{
 		free(*content);

@@ -2,7 +2,7 @@ NAME = cub3D
 
 SRCS = ./srcs/ft_clean.c ./srcs/ft_image.c ./srcs/ft_init.c ./srcs/ft_key_handler.c ./srcs/ft_map_checker.c ./srcs/ft_move.c ./srcs/ft_parser.c ./srcs/ft_parser_1.c ./srcs/ft_renderer.c ./srcs/ft_renderer_part2.c ./srcs/ft_rotation.c ./srcs/ft_utils.c ./srcs/ft_utils_0.c ./srcs/main.c ./srcs/main_part2.c ./srcs/ft_file_checker.c
 
-CC = cc -Wall -Wextra -Werror
+CC = gcc -Wall -Wextra -Werror
 
 OBJS = $(SRCS:.c=.o)
 

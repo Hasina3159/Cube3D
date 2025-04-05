@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 08:38:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/23 09:07:45 by fhajanol         ###   ########.fr       */
+/*   Updated: 2025/04/04 14:32:09 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_get_data(char *content, char *data_name, int *index);
 char	*get_final(char *final, char *path)
 {
 	if (final == NULL)
-		printf("Error\n%s: Is a directory\n", path);
+		printf("Error\n%s: Invalid file\n", path);
 	return (final);
 }
 
@@ -31,12 +31,10 @@ char	**ft_get_true_map(char *content, int line_index)
 	int		i;
 	int		count;
 	char	**map;
-	int		size;
 
 	i = 0;
 	count = 0;
 	line_index++;
-	size = ft_get_longest(content, line_index);
 	while (i < (int)ft_strlen(content) && count < line_index)
 	{
 		if (content[i] == '\n')

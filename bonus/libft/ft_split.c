@@ -6,11 +6,20 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 09:02:53 by fhajanol          #+#    #+#             */
-/*   Updated: 2025/03/08 12:18:07 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/04/04 13:41:10 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static char	**liberer(char **list, int i)
+{
+	while (--i >= 0)
+		free(list[i]);
+	free(list);
+	return (NULL);
+}
+
 
 static size_t	ft_countword(const char *s, char c)
 {
@@ -19,9 +28,9 @@ static size_t	ft_countword(const char *s, char c)
 	count = 0;
 	while (*s)
 	{
+		count++;
 		if (*s != c)
 		{
-			count++;
 			while (*s && *s != c)
 				s++;
 		}
@@ -29,14 +38,6 @@ static size_t	ft_countword(const char *s, char c)
 			s++;
 	}
 	return (count);
-}
-
-static char	**liberer(char **list, int i)
-{
-	while (--i >= 0)
-		free(list[i]);
-	free(list);
-	return (NULL);
 }
 
 char	**ft_split(const char *s, char c)
@@ -54,7 +55,11 @@ char	**ft_split(const char *s, char c)
 	while (*s)
 	{
 		while (*s == c)
+		{
+			if (*(s + 1) && *(s + 1) == c)
+				result[i++] = ft_strdup("");
 			s++;
+		}
 		if (!*s)
 			break ;
 		len = 0;

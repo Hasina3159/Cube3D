@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:24:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/23 11:23:28 by fhajanol         ###   ########.fr       */
+/*   Updated: 2025/03/30 11:34:27 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,10 @@ int	ft_get_color(char *content, char *data_name)
 
 	color_str = ft_get_data(content, data_name, &line_index);
 	splitted = ft_split(color_str, ',');
-	if (ft_get_split_size(splitted) != 3)
+	if (ft_check_color_lst(splitted) == false)
 	{
-		ft_free_string_and_splitted(color_str, splitted);
+		free(color_str);
+		ft_free_split(splitted);
 		return (-1);
 	}
 	if (!ft_is_str_num(splitted[0]) || !ft_is_str_num(splitted[1])

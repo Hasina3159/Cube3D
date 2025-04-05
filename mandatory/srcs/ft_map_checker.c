@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_checker.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 08:38:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/23 11:23:28 by fhajanol         ###   ########.fr       */
+/*   Updated: 2025/04/04 13:51:15 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,12 +129,17 @@ t_bool	ft_check_map_char(char **map)
 	player_count = 0;
 	while (map[i])
 	{
+		if (ft_strlen(map[i]) == 0)
+		{
+			printf("Error\n\\n found in map!\n");
+			return (false);
+		}
 		if (ft_check_map_char_loop(&i, &player_count, map) == false)
 			return (false);
 	}
 	if (player_count != 1)
 	{
-		printf("Error!\nInvalid player count.\n");
+		printf("Error\nInvalid player count.\n");
 		return (false);
 	}
 	return (true);

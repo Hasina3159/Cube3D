@@ -1,10 +1,11 @@
 NO ./mandatory/sprites/test_1.xpm
 SO ./mandatory/sprites/test_3.xpm
+
 WE ./mandatory/sprites/test_2.xpm
 EA ./mandatory/sprites/test_4.xpm
 
 F 102,100,100
-C 10,20,250
+C 10,25,255
 1111111111111111
 100000000000000E1
 10000000000000001

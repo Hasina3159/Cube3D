@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser_part2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 08:08:50 by fhajanol          #+#    #+#             */
-/*   Updated: 2025/03/23 08:49:46 by fhajanol         ###   ########.fr       */
+/*   Updated: 2025/04/04 13:59:54 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,11 @@ int	pp(char *to_split, int *count, char *data_name, char **path)
 	char	**split_path;
 
 	split_path = ft_split(to_split, ' ');
-	if (split_path[0] == NULL)
+	if (!split_path || split_path[0] == NULL)
+	{
+		ft_free_split(split_path);
 		return (1);
+	}
 	if (ft_strncmp(data_name, split_path[0], (int)ft_strlen(data_name)) == 0
 		&& ft_get_split_size(split_path) == 2)
 	{

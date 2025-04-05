@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:09:36 by fhajanol          #+#    #+#             */
-/*   Updated: 2025/03/23 08:46:33 by fhajanol         ###   ########.fr       */
+/*   Updated: 2025/04/04 13:46:39 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main_pt1(char **argv, t_data *data, int *line_index)
 		free(data->content);
 		return (0);
 	}
-	data->world_map = ft_get_map(data->content, *line_index);
+	data->world_map = ft_get_map(data->content, *line_index - 1);
 	if (ft_check_map_char(data->world_map) == false
 		|| ft_check_map(data->world_map) == false || *line_index == -1)
 	{
@@ -58,7 +58,7 @@ int	main_pt2(t_data *data)
 	}
 	data->color_ground = ft_get_color(data->content, "F");
 	data->color_sky = ft_get_color(data->content, "C");
-	if (data->color_ground < 0)
+	if (data->color_ground < 0 || data->color_sky < 0)
 	{
 		printf("Error\nInvalid color value\n");
 		free(data->content);

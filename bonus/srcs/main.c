@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:09:36 by fhajanol          #+#    #+#             */
-/*   Updated: 2025/03/23 11:24:27 by fhajanol         ###   ########.fr       */
+/*   Updated: 2025/04/04 14:25:20 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_init_hooks(t_data *data)
 {
 	mlx_hook(data->win, 17, 1L << 17, clean_up, (void *)data);
 	mlx_hook(data->win, 2, 1L << 0, handle_keypress, (void *)data);
-	mlx_loop_hook(data->mlx, (int (*)(void *))perform_raycasting, (void *)data);
+	mlx_loop_hook(data->mlx, perform_raycasting, (void *)data);
 	mlx_hook(data->win, 3, 1L << 1, handle_keyrelease, (void *)data);
 	mlx_hook(data->win, 10, 1L << 21, show_mouse, (void *)data);
 	mlx_hook(data->win, 9, 1L << 21, hide_mouse, (void *)data);
@@ -81,8 +81,8 @@ int	main(int argc, char **argv)
 	content = ft_get_content(argv[1]);
 	if (content == NULL)
 		return (0);
-	line_index = ft_check_if_all_data_exists(content);
-	if (line_index == -1)
+	line_index = ft_check_if_all_data_exists(content) - 1;
+	if (line_index == -2)
 	{
 		free(content);
 		return (0);

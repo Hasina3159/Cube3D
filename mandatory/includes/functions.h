@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:50:41 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/23 11:25:54 by fhajanol         ###   ########.fr       */
+/*   Updated: 2025/03/30 11:33:06 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include "defines.h"
 # include "struct.h"
 
-void	perform_raycasting(t_data *data);
+int		perform_raycasting(t_data *data);
 void	move_forward(t_data *data);
 void	move_right(t_data *data);
 void	move_left(t_data *data);
@@ -26,7 +26,6 @@ int		clean_up(t_data *data);
 int		handle_keypress(int keycode, t_data *data);
 int		handle_keyrelease(int keycode, t_data *data);
 void	draw_vertical_line(t_data *data);
-void	perform_raycasting(t_data *data);
 void	init_key(t_key *key_data);
 void	key_render(t_data *data);
 int		ft_load_xpm_image(t_data *data, t_img *image, char *path);
@@ -50,5 +49,6 @@ void	ft_get_player_position_assign(double *px, double *py, int x, int y);
 t_bool	ft_is_valid_char(char c, char *s);
 t_bool	ft_check_filename(int argc, char **argv);
 char	**ft_clone_map(char **map);
+t_bool	ft_check_color_lst(char **sp_color);
 
 #endif // !FUNCTIONS_H

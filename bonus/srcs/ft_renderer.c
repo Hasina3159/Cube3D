@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_renderer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fhajanol <fhajanol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:47:25 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/23 10:49:26 by fhajanol         ###   ########.fr       */
+/*   Updated: 2025/03/30 11:11:01 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,13 +117,13 @@ void	rc_inner_pt6(t_data *data, t_raycast_var *var)
 	var->dda->x++;
 }
 
-void	perform_raycasting(t_data *data)
+int	perform_raycasting(t_data *data)
 {
 	t_raycast_var	*var;
 
 	var = (t_raycast_var *)ft_calloc(sizeof(t_raycast_var), 1);
 	if (!var)
-		return ;
+		return (1);
 	raycast_pt1(data, var);
 	while (var->dda->x < SCREENWIDTH)
 	{
@@ -143,5 +143,5 @@ void	perform_raycasting(t_data *data)
 	mlx_put_image_to_window(data->mlx, data->win, data->screen.img, 0, 0);
 	update_fps(&data->fps);
 	calculate_fps(data);
-	free(var);
+	return (free(var), 1);
 }
