@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:24:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/30 11:38:28 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/04/12 08:11:53 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,10 @@ int	ft_get_color(char *content, char *data_name)
 	char	**splitted;
 
 	color_str = ft_get_data(content, data_name, &line_index);
-	if (color_str == NULL)
-		return (-1);
+	if (color_str == NULL || (ft_strlen(color_str) > 0 \
+	&& (color_str[0] == ',' || \
+	color_str[(int)ft_strlen(color_str) - 1] == ',')))
+		return (free(color_str), -1);
 	splitted = ft_split(color_str, ',');
 	if (ft_check_color_lst(splitted) == false)
 	{

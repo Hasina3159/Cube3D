@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:50:41 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/30 11:33:06 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/04/12 09:35:11 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,7 @@ t_bool	ft_is_valid_char(char c, char *s);
 t_bool	ft_check_filename(int argc, char **argv);
 char	**ft_clone_map(char **map);
 t_bool	ft_check_color_lst(char **sp_color);
+int		ft_free(void *addr);
+char	*ft_b_content(char *content);
 
 #endif // !FUNCTIONS_H

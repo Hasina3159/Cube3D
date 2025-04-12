@@ -1,6 +1,6 @@
 all:
 	make -C mandatory
-	cp mandatory/cub3D .
+	mv -f mandatory/cub3D .
 
 clean:
 	make -C mandatory cleanAll
@@ -15,7 +15,7 @@ re: fclean all
 
 bonus:
 	make -C bonus
-	cp bonus/cub3D .
+	mv -f bonus/cub3D .
 
 reBonus: fclean bonus
 

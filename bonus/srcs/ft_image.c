@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:10:19 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/04/04 14:26:47 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/04/12 08:05:39 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_bool	ft_check_file_validity(char *path)
 
 	if (path == NULL)
 		printf("Error\nNULL path!\n");
-	fd = open(path, O_RDONLY);
+	fd = open(path, O_RDWR);
 	if (fd == -1)
 	{
 		printf("Error\n");

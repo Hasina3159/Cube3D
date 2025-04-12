@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 21:50:41 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/30 11:11:28 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/04/12 09:21:01 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ t_bool	ft_second_condition(char *pl, t_data *dt, char *cntnt, int ln_idx);
 void	ft_init_struct(t_data *data);
 t_bool	ft_check_filename(int argc, char **argv);
 char	**ft_clone_map(char **map);
+char	*ft_b_content(char *content);
 
 #endif // !FUNCTIONS_H

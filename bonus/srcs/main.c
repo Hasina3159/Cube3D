@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:09:36 by fhajanol          #+#    #+#             */
-/*   Updated: 2025/04/04 14:25:20 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/04/12 09:21:19 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	main(int argc, char **argv)
 	ft_init_images(&data);
 	player = 0;
 	content = NULL;
-	content = ft_get_content(argv[1]);
+	content = ft_b_content(ft_get_content(argv[1]));
 	if (content == NULL)
 		return (0);
 	line_index = ft_check_if_all_data_exists(content) - 1;

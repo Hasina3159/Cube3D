@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 08:08:50 by fhajanol          #+#    #+#             */
-/*   Updated: 2025/04/04 13:59:54 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/04/12 09:15:53 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ char	**ft_get_map(char *content, int line_index)
 			count++;
 		i++;
 	}
+	while (content[i] == '\n')
+		i++;
 	if (count == line_index)
 		map = ft_split((content + i), '\n');
 	else

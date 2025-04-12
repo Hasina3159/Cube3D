@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:09:06 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/30 10:42:19 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/04/12 09:24:45 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,19 @@ t_bool	ft_is_valid_char(char c, char *s)
 		i++;
 	}
 	return (false);
+}
+
+char	*ft_b_content(char *content)
+{
+	char	*result;
+	int		i;
+
+	if (content == NULL)
+		return (NULL);
+	i = 0;
+	while (content[i] && content[i] == '\n')
+		i++;
+	result = ft_strdup(&content[i]);
+	free(content);
+	return (result);
 }

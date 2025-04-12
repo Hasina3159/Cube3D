@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:26:32 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/04/04 13:42:33 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/04/12 08:41:22 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ char **path, int *count, int *index)
 }
 */
 
-char	*ft_get_data(char *content, char *data_name, int *index)
+char	*ft_get_data(char *content, char *dt_name, int *index)
 {
 	char	**splitted;
 	char	*path;
@@ -119,23 +119,18 @@ char	*ft_get_data(char *content, char *data_name, int *index)
 	splitted = ft_split(content, '\n');
 	if (splitted[0] == NULL)
 		return (NULL);
-	path = NULL;
 	count = 0;
-	i = 0;
-	while (splitted[i])
+	i = -1;
+	path = NULL;
+	while (splitted[++i])
 	{
 		split_path = ft_split(splitted[i], ' ');
-		if (split_path[0] != NULL && ft_strncmp(data_name, split_path[0],
-				ft_strlen(data_name)) == 0)
-		{
-			free(path);	
+		if (split_path[0] != NULL && ft_strncmp(dt_name, split_path[0],
+				ft_strlen(dt_name)) == 0 && ft_free(path))
 			path = ft_extract_path(split_path, &count, i, index);
-		}
 		ft_free_split(split_path);
-		i++;
 	}
-	ft_free_split(splitted);
-	if (ft_check_data(count, path, index, data_name) == false)
+	if (ft_free_split(splitted) && !ft_check_data(count, path, index, dt_name))
 		return (NULL);
 	return (path);
 }

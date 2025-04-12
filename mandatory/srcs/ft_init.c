@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:24:14 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/30 11:34:27 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/04/12 08:22:33 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,20 +92,16 @@ int	ft_get_color(char *content, char *data_name)
 	int		color;
 
 	color_str = ft_get_data(content, data_name, &line_index);
+	if (!*color_str || color_str[0] == ',' || \
+	color_str[ft_strlen(color_str) - 1] == ',')
+		return (free(color_str), -1);
 	splitted = ft_split(color_str, ',');
 	if (ft_check_color_lst(splitted) == false)
-	{
-		free(color_str);
-		ft_free_split(splitted);
-		return (-1);
-	}
+		return (ft_free_split(splitted), free(color_str), -1);
 	if (!ft_is_str_num(splitted[0]) || !ft_is_str_num(splitted[1])
 		|| !ft_is_str_num(splitted[2]) || ft_atoi(splitted[0]) > 255
 		|| ft_atoi(splitted[1]) > 255 || ft_atoi(splitted[2]) > 255)
-	{
-		ft_free_string_and_splitted(color_str, splitted);
-		return (-1);
-	}
+		return (ft_free_split(splitted), free(color_str), -1);
 	color = 0;
 	color = (ft_atoi(splitted[0]) << 16) | (ft_atoi(splitted[1]) << 8)
 		| ft_atoi(splitted[2]);

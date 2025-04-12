@@ -6,12 +6,11 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 09:02:53 by fhajanol          #+#    #+#             */
-/*   Updated: 2025/04/04 13:45:38 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/04/12 09:37:17 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
 
 static char	**liberer(char **list, int i)
 {
@@ -20,7 +19,6 @@ static char	**liberer(char **list, int i)
 	free(list);
 	return (NULL);
 }
-
 
 static size_t	ft_countword(const char *s, char c)
 {
@@ -41,6 +39,15 @@ static size_t	ft_countword(const char *s, char c)
 	return (count);
 }
 
+void	_nothing(const char **s, char c, char **result, size_t *i)
+{
+	while (**s == c)
+	{
+		if (*((*s)++ + 1) && **(s) == c)
+			result[(*i)++] = ft_strdup("");
+	}
+}
+
 char	**ft_split(const char *s, char c)
 {
 	char	**result;
@@ -55,17 +62,12 @@ char	**ft_split(const char *s, char c)
 		return (0);
 	while (*s)
 	{
-		while (*s == c)
-		{
-			if (*(s + 1) && *(s + 1) == c)
-				result[i++] = ft_strdup("");
-			s++;
-		}
+		_nothing(&s, c, result, &i);
 		if (!*s)
 			break ;
 		len = 0;
 		while (*s && *s != c && ++len)
-			++s;
+			s++;
 		result[i++] = ft_substr(s - len, 0, len);
 		if (!result[i - 1])
 			return (liberer(result, (int)i));

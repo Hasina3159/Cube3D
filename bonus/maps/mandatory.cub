@@ -1,14 +1,38 @@
+
+
+
+
+
 NO ./bonus/sprites/test_1.xpm
-SO ./bonus/sprites/test_3.xpm
-WE ./bonus/sprites/test_2.xpm
-EA ./bonus/sprites/test_4.xpm
 
 F 102,100,100
+
 C 10,20,250
-1111111111111111
-1000000000000001
-100B00000000N001
-1000000000111111
+
+
+SO ./bonus/sprites/test_3.xpm
+
+
+WE ./bonus/sprites/test_2.xpm
+
+
+
+EA ./bonus/sprites/test_4.xpm
+
+
+
+
+
+
+
+
+
+
+
+111111111111111
+100000000000001
+10B00000100N001
+100000000111111
 100000111111
 111D1111
 1110111

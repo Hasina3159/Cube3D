@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:09:36 by fhajanol          #+#    #+#             */
-/*   Updated: 2025/04/04 13:46:39 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/04/12 09:23:12 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_load_images(t_data *data, char *content);
 int	main_pt1(char **argv, t_data *data, int *line_index)
 {
 	ft_init_struct(data);
-	data->content = ft_get_content(argv[1]);
+	data->content = ft_b_content(ft_get_content(argv[1]));
 	if (data->content == NULL)
 		return (0);
 	*line_index = ft_check_if_all_data_exists(data->content);

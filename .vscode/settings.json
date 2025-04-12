@@ -1,7 +1,0 @@
-{
-    "files.associations": {
-        "algorithm": "c",
-        "functions.h": "c",
-        "struct.h": "c"
-    }
-}

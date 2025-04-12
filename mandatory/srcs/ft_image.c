@@ -20,7 +20,7 @@ t_bool	ft_check_file_validity(char *path)
 
 	if (path == NULL)
 		printf("Error\nNULL path!\n");
-	fd = open(path, O_RDONLY);
+	fd = open(path, O_RDWR);
 	if (fd == -1)
 	{
 		printf("Error\n");

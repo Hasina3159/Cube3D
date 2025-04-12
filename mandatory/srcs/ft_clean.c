@@ -6,7 +6,7 @@
 /*   By: ntodisoa <ntodisoa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:49:27 by ntodisoa          #+#    #+#             */
-/*   Updated: 2025/03/30 11:37:09 by ntodisoa         ###   ########.fr       */
+/*   Updated: 2025/04/12 08:41:51 by ntodisoa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,10 @@ t_bool	ft_check_color_lst(char **sp_color)
 		ft_atoi(sp_color[1]) > 255 || ft_atoi(sp_color[2]) > 255)
 		return (false);
 	return (true);
+}
+
+int	ft_free(void *addr)
+{
+	free(addr);
+	return (1);
 }
